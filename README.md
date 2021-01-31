@@ -17,3 +17,17 @@ A tensor is Generalization of matrices with n dimentions.
 2. a one dimentional tensor is called vector   
 3. a two dimentional tensors are matrices  
 4. a 3d tensors called tensor.  
+
+## Tensor Operations
+
+Open google colab  
+
+```!pip install torch
+import torch
+
+OneDTensor = torch.tensor([1,2,3])
+
+print(oneDTensor)
+
+```
+
