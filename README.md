@@ -278,3 +278,24 @@ x= torch.tensor([[2],[4],[7]])
 forward(x)
 
 ```
+
+### Standard Way to Define a linear model 
+
+```import torch
+from torch.nn import Linear
+```
+
+```
+torch.manual_seed(1)# set seed for reproducibility
+model = Linear(in_features=1, out_features=1) #for every prediction we make, for everyoutput there is a single input
+print(model.bias, model.weight)
+```
+
+```x = torch.tensor([2.0])
+print(model(x))
+```
+```
+# making multiple predictions at once
+x = torch.tensor([[2.0],[3.3],[4.0]])
+print(model(x))
+```
