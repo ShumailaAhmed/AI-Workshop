@@ -280,6 +280,7 @@ forward(x)
 ```
 
 ### Standard Way to Define a linear model 
+The standard way is to use the linear model class
 
 ```import torch
 from torch.nn import Linear
@@ -298,4 +299,55 @@ print(model(x))
 # making multiple predictions at once
 x = torch.tensor([[2.0],[3.3],[4.0]])
 print(model(x))
+```
+
+### Writing Custom Modules
+```
+import torch
+import torch.nn as nn
+#########################
+
+class LR(nn.Module): #the class LR will inherit from Module, LR will be sub class of nn.module and will inherit methods and variables from parent class
+#initialize the class 
+  def __init__(self, input_size, output_size): ## define input and output classes 
+    super().__init__() ## while using inheritence, it is customary to initialize the parent class
+    self.linear = nn.Linear(input_size, output_size)
+  def forward(self, x): #to make predictions we make use of forward method
+    pred = self.linear(x)
+    return pred
+    
+ ########################
+ 
+#see the model structure 
+torch.manual_seed(1)
+model = LR(1, 1)
+print(list(model.parameters()))
+
+#########################
+#make predictions
+x =torch.tensor([1.0])
+print(model.forward(x))
+
+#multiple predictions
+x =torch.tensor([[1.0],[2.0]])
+print(model.forward(x))
+```
+
+So we have seen 3 ways to use a simple linear regression model, or determine equation of a line. but this is the fundamental to define any complex model that we will be doing shortly.  
+
+Next we perform training so as to learn new weights and bias values based on given data. Up until this point we have not introduced any data and we were just looking at random parameters.   
+
+### Making Data 
+Before we learn the concepts related to the model and train a model on the data we need to create and visualize the data, so lets do that
+we are going to make following data
+![Data Visualization](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/data.png)
+
+
+```
+import torch
+import torch.nn as nn
+import matplotlib.pyplot as plt
+import numpy as np
+###################
+
 ```
