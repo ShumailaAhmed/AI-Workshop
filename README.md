@@ -231,3 +231,24 @@ print(z.grad)
 ```
 
 This is all, we can now use this knowlegde to train neural networks. 
+
+## Linear Regression
+
+We will get fimiliar with common machine learning algorithms and train a linear model to propoerly fit a set of data points. Here we will discuss various fundamental concepts involved in training a model, including
+
+1. loss function  
+2. gradient descent
+3. optimization
+4. learning rate, etc
+
+### Basic Concepts
+
+#### What is Machine learning? 
+
+It is the concept of building computational algorithms that can learn overtime based on expirence. Such that rather than explicitly programming a hardcoded set of instructions, an intelligent system is given the capacity learn, detect and predict meaningful patterns. 
+
+#### Supervised Learning
+
+![Supervised Learning](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/supervisedlearning.gif)
+
+
