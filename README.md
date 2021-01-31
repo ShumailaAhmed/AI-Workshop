@@ -248,7 +248,33 @@ We will get fimiliar with common machine learning algorithms and train a linear 
 It is the concept of building computational algorithms that can learn overtime based on expirence. Such that rather than explicitly programming a hardcoded set of instructions, an intelligent system is given the capacity learn, detect and predict meaningful patterns. 
 
 #### Supervised Learning
+Supervised learning makes use of datasets with labelled features which define meaning of the training data. Hence when introduced to new data, the algorithm is able to produce a corresponding output. 
 
 ![Supervised Learning](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/supervisedlearning.gif)
 
 
+### Make Predictions using defined model
+
+we know the equation of a line can be modeled using the equation  
+**y = wx+b** some of you might have seen it in the form **y = mx+c**  
+Here w is the slope and b is the y intercept of the line, these parameters actually define the line. So in linear regression, our ultimate goal is to predict these parameters for a given set of datapoint
+
+In other words, we use the data points to train the linear model to have optimal weight and bias value to provide us with the line of best fit. 
+
+```
+import torch
+
+w = torch.tensor(3.0,requires_grad=True)
+b = torch.tensor(1.0,requires_grad=True)
+
+def forward(x):
+  y = w*x+b
+  return y
+  
+x= torch.tensor(2)
+forward(x)
+
+x= torch.tensor([[2],[4],[7]])
+forward(x)
+
+```
