@@ -72,4 +72,50 @@ we can also define float tensors
  print(tensor)
  numpy = tensor.numpy()
  print(numpy)
+ ```
  
+ ### Vector Operations
+ 
+ ```
+ t1 = torch.tensor([1,2,3])
+t2 = torch.tensor([1,2,3])
+ ```
+ 
+ these one dimentional tensors behave like vectors, such that if we add these vectors, each homologous value is added, similar is the case with tensor multiplication and scalar multiplication.
+ 
+ ```t1+t2
+ t1 * t2
+ t1*10
+ 
+ ```
+ the dot product is given as
+ 
+ ```
+ dot = torch.dot(t1,t2)
+ print(dot)
+ ```
+ torch linspace prints 100 equally spaced numbers between specified ranges.
+
+ ```
+  torch.linspace(0,1000)
+ ```
+ 
+ we can also explicitly spicify spacing by third parameter
+ 
+ ```
+  torch.linspace(0,1000,5)
+ ```
+ 
+ we can plot the ranges using matplotlib
+ 
+```import matplotlib.pyplot as plt
+x=  torch.linspace(0,10)
+y= torch.exp(x)
+plt.plot(x.numpy(),y.numpy())
+#sin plot
+y= torch.sin(x)
+plt.plot(x.numpy(),y.numpy())
+
+
+```
+
