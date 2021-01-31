@@ -64,5 +64,12 @@ we can also define float tensors
  floatTensor.view(2,-1)
  ```
  
+ ### Convert numpy array into Tensors
  
+ ```import numpy as np
+ array = np.array([1,2,3,4,5])
+ tensor= torch.from_numpy(array) #convert numpy array to tensor
+ print(tensor)
+ numpy = tensor.numpy()
+ print(numpy)
  
