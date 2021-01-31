@@ -151,3 +151,26 @@ we can check the dimentionality of a tensor by using the dim method
 ```
 twoDim.dim()
 ```
+
+indexing the 2D tensor can be accomplished by
+
+```
+twoDim[0,2]
+```
+Next we can define a 3d array as follows
+```
+x= torch.arange(18).view(2,3,3)
+x
+```
+this reshapes 2 blocks each having 3 rows and 3 column, If we want to reshape it into 3 blocks having 2 rows and 3 columns we can accomplish this by 
+```
+x= torch.arange(18).view(3,2,3)
+x
+```
+similarly we can have 2 blocks of 3 rows and 2 columns by 
+```
+x= torch.arange(18).view(3,3,2)
+x
+```
+
+### Slicing Multidimentional Tensors
