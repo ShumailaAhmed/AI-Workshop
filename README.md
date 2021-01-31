@@ -107,7 +107,7 @@ t2 = torch.tensor([1,2,3])
  ```
  
  we can plot the ranges using matplotlib
- 
+  
 ```import matplotlib.pyplot as plt
 x=  torch.linspace(0,10)
 y= torch.exp(x)
@@ -121,6 +121,32 @@ plt.plot(x.numpy(),y.numpy())
 
 ### Two Dimentional Tensors
 
-2D tensors are analogous to matrices, having some number of rows and some number of columns. Gray scale images are typical example of 2D tensors. 
+2D tensors are analogous to matrices, having some number of rows and some number of columns. Gray scale images are typical example of 2D tensors.these contain values from 0 to 255 in a single channel of information, hence these can be stored in the 2 dimentional tensors or matrices.
 
 ![2d Tensor example Gray-scale Image](https://raw.githubusercontent.com/ShumailaAhmed/AI-Workshop/main/grayscale.gif?token=ALS5FOAAD6FXSTLMUI4YIDDAC2WPE)
+
+Tensors can be extended to 3, 4 and n-dimentions.  
+
+Lets initialize a 1D tensor
+
+```one_d = torch.arange(2,7)
+one_d
+```
+we can also specify the step size
+
+```one_d = torch.arange(2,7,2)
+one_d
+```
+
+we can arrange 1d tensor as 2d tensor
+
+```
+oneDim = torch.arange(0,9)
+twoDim = oneDim.view(3,3)
+```
+
+we can check the dimentionality of a tensor by using the dim method
+
+```
+twoDim.dim()
+```
