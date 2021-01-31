@@ -350,4 +350,59 @@ import matplotlib.pyplot as plt
 import numpy as np
 ###################
 
+#each data point has a x and a y value
+#we will be specifying x value by using randn
+X = torch.randn(100, 1)*10 # returns a tensor filled with random numbers that are normally distributed
+#it will have 100 rows and 1 column, they are y default centered around zero, to change that we multiply
+#it by 10 to scale the values
+y = X  #this creates an x = y line with normally distributed values, but this is not very challenging 
+#y = X + 3*torch.randn(100, 1) #this adds noise in the data by shifting y value either upward or downward, so that the noise is alo normally distributed 
+#and since randn centers around zero, with small standard deviation, so to make noise reasonable significant we multiply by 3
+plt.plot(X.numpy(), y.numpy(), 'o')
+plt.ylabel('y')
+plt.xlabel('x')
+#Now that we have created the dataset, we need to train a model to fit this dataset. Before going to that lets see how our previous definition of model fits the data 
+###################
+#re use the class we created earlier
+class LR(nn.Module):
+  def __init__(self, input_size, output_size):
+    super().__init__()
+    self.linear = nn.Linear(input_size, output_size)
+  def forward(self, x):
+    pred = self.linear(x)
+    return pred
+###################
+    #we have random weights and bias assigned to model 
+  torch.manual_seed(1)
+model = LR(1, 1)
+print(list(model.parameters()))
+###################
+we can see what value is actually assigned to the parameters
+[w, b] = model.parameters()
+def get_params():
+  return (w[0][0].item(), b[0].item()) this will return the two values as tuple
+# we are doing this because these are the parameters we will update or try to change in order to FIT the data.
+###################
+we draw the line defined by our random parameters and see how well it fits the data
+def plot_fit(title):
+  plt.title = title
+  w1, b1 = get_params()
+  x1 = np.array([-30, 30])
+  y1 = w1*x1 + b1
+  plt.plot(x1, y1, 'r')
+  plt.scatter(X, y)
+  plt.show()
+###################
+
+plot_fit('Initial Model') 
 ```
+As we can see the current model is a very bad fit for the data so we need to use GRADIENT DESCENT to update its parameters
+
+
+### Loss Function
+
+Lets Define our Goal, provided a set of data points we need to find the parameters of a line that will fit this data adequately. 
+Since our random initialization does not fit the data we need some sort of OPTIMIZATION algorithm that will adjust the parameters based on the total error.
+We will continue this until we get line with least error. 
+
+For every data point, the error is given by diffrence between predicted and true value. 
