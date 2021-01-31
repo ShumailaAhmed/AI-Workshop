@@ -174,3 +174,43 @@ x
 ```
 
 ### Slicing Multidimentional Tensors
+
+we can select single element from a 3D tensor as follows
+```
+x[1,1,1]
+```
+if we want to slice a multidimentional tesnor we ca follow suit
+
+```
+x[1,0:2,0:3]
+#or
+ x[1,:,:]
+```
+
+### Matrix Multiplication
+
+we can perform matrix multiplication between two matrices A and B if and only if the number of columns in A is equal to number of rows in matrix B
+
+the resulting matrix will have rows_A x col_B size
+
+```
+matA = torch.tensor([0,3,4,5,5,2]).view(2,3)
+matA
+
+matB = torch.tensor([3,4,3,-2,4,-2]).view(3,2)
+matB
+
+torch.matmul(matA,matB)
+#or
+matA @ matB
+```
+
+### Derivatives (Gradients)
+
+The derivatives represent the functions rate of change. The derivative at a point x is defined as slope of the tangent to the curve at x. 
+
+This can be achieved via python code
+
+```
+
+```
