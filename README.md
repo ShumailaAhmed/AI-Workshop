@@ -13,7 +13,7 @@ A tensor is Generalization of matrices with n dimentions.
 
 ![Insert Tensor Image](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 
-*a zero dimentional vector is called scalar  
-*a one dimentional tensor is called vector   
-*a two dimentional tensors are matrices  
-*and 3d tensors called tensor.  
+1. a zero dimentional vector is called scalar  
+2. a one dimentional tensor is called vector   
+3. a two dimentional tensors are matrices  
+4. a 3d tensors called tensor.  
