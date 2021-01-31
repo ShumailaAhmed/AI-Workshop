@@ -25,9 +25,44 @@ Open google colab
 ```!pip install torch
 import torch
 
-OneDTensor = torch.tensor([1,2,3])
+oneDTensor = torch.tensor([1,2,3])
 
 print(oneDTensor)
+print(oneDTensor.dtype)
 
 ```
+ Indexing Tensors is similar to indexing python list
+ 
+ ```
+ print(oneDTensor[0])
+ ```
+Slicing the tensor is just like slicing the python list
 
+```
+oneDTensor = torch.tensor([1,2,3,4,5,6])
+print(oneDTensor[:4])
+```
+
+we can also define float tensors
+
+```
+ floatTensor= torch.FloatTensor([1,2,3,4,5,6])
+ print (floatTensor)
+ print(floatTensor.dtype)
+ ```
+ 
+ size of tensor is determined by size method
+ 
+ ```print(floatTensor.size())```
+ 
+ 
+ reshape the tensor just like numpy.reshape function 
+ 
+ ```floatTensor.view(6,1)
+ floatTensor.view(6,2) #throws error
+ floatTensor.view(3,2)
+ floatTensor.view(2,-1)
+ ```
+ 
+ 
+ 
