@@ -119,3 +119,8 @@ plt.plot(x.numpy(),y.numpy())
 
 ```
 
+### Two Dimentional Tensors
+
+2D tensors are analogous to matrices, having some number of rows and some number of columns. Gray scale images are typical example of 2D tensors. 
+
+![2d Tensor example Gray-scale Image](https://raw.githubusercontent.com/ShumailaAhmed/AI-Workshop/main/grayscale.gif?token=ALS5FOD72IAXMHBN6DNTSKTAC2VYY)
