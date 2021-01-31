@@ -212,5 +212,22 @@ The derivatives represent the functions rate of change. The derivative at a poin
 This can be achieved via python code
 
 ```
+x = torch.tensor(2.0, requires_grad= True)
+y =  9*x**4 + 2*x**3 + 3*x**2 + 6*x +1
+y.backward()
+x.grad
+```
+Now if we consider partial derivatives, 
 
 ```
+x = torch.tensor(1.0, requires_grad= True)
+z = torch.tensor(2.0, requires_grad= True)
+
+y = x**2 + z**3
+
+y.backward()
+print(x.grad)
+print(z.grad)
+```
+
+This is all, we can now use this knowlegde to train neural networks. 
