@@ -11,7 +11,7 @@ It enables convinent implementation of nural networks
 Tensor is a data structure, neural nets are fundamentally structuren as tensors.
 A tensor is Generalization of matrices with n dimentions. 
 
-![Basic Tensor Structure](https://github.com/ShumailaAhmed/AI-Workshop/main/tensors.png?raw=true)
+![Basic Tensor Structure](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/tensors.png)
 
 
 1. a zero dimentional vector is called scalar  
