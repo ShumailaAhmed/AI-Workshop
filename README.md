@@ -8,7 +8,7 @@
 Pytorch provides trnsor computation with strong gpu acceleration
 It enables convinent implementation of nural networks
 
-Tensor is a data structure, neural nets are fundamentally structuren as tensors.
+Tensor is a data structure, neural nets are fundamentally  as tensors.
 A tensor is Generalization of matrices with n dimentions. 
 
 ![Basic Tensor Structure](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/tensors.png)
@@ -24,7 +24,7 @@ A tensor is Generalization of matrices with n dimentions.
 Open google colab  
 
 ```!pip install torch
-import torch
+import torchstructuren
 
 oneDTensor = torch.tensor([1,2,3])
 
@@ -406,3 +406,6 @@ Since our random initialization does not fit the data we need some sort of OPTIM
 We will continue this until we get line with least error. 
 
 For every data point, the error is given by diffrence between predicted and true value. 
+
+![Error ](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/Figure_1.png)
+
