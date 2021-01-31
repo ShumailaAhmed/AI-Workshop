@@ -124,7 +124,7 @@ plt.plot(x.numpy(),y.numpy())
 
 2D tensors are analogous to matrices, having some number of rows and some number of columns. Gray scale images are typical example of 2D tensors.these contain values from 0 to 255 in a single channel of information, hence these can be stored in the 2 dimentional tensors or matrices.
 
-![2d Tensor example Gray-scale Image](https://raw.githubusercontent.com/ShumailaAhmed/AI-Workshop/main/grayscale.gif?token=ALS5FOAAD6FXSTLMUI4YIDDAC2WPE)
+![2d Tensor example Gray-scale Image](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/grayscale.gif)
 
 Tensors can be extended to 3, 4 and n-dimentions.  
 
