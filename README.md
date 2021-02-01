@@ -481,5 +481,55 @@ while the new bias term is given by
 ```math
 m1 = b0 - LR * f'(b)
 ```
-We dont have to worry on about the math when we code, its just to know what is going behind the scene.
+We dont have to worry on about the math when we code, its just to know what is going behind the scene. 
 
+
+### Code Implementation
+First we define the loss function and optimizer to reduce the loss
+```
+### continued from last section
+criterion = nn.MSELoss() #we will access the builtin loss function Mean Squared Loss
+optimizer = torch.optim.SGD(model.parameters(), lr = 0.01) 
+# we use an optimizer to update the parameter
+#we use Schocastic gradient descent algorithm 
+#schoastic gradient descent vs batch gradient descent 
+#batch gradient descent finds error for everysingle data point which is computationally inefficient
+#sgd minimizes gradient descent one sample at a time, it will update weights more often.
+
+# in sgd we pass two arguments, one the model parameters we want to optimize and the learning rate
+```
+Next we train the model
+
+```
+#epochs are the no of single pass through entire data set
+epochs = 100 #we will train the model for 100 epochs
+#as we itterate through the dataset we calculate the error function and backpropagate the gradient of of error function
+#1 epoch = underfits
+#if we do too many epochs we get overfitting
+losses = []
+for i in range(epochs): 
+  y_pred = model.forward(X) # get pred
+  loss = criterion(y_pred, y) #get mse 
+  print("epoch:", i, "loss:", loss.item()) #print epoch and loss
+  
+  losses.append(loss) #keep track of losses, append in a list to visualize decrease in loss
+  optimizer.zero_grad() #we must call zero grad because gradients accumulate following the loss.backward call
+  loss.backward() # compute the derivative
+  optimizer.step() # update the parameters, all optimizers implement the step
+
+```
+
+In order to visualize the loss wrt to the number of epochs we can plot it
+
+```
+plt.plot(range(epochs), losses)
+plt.ylabel('Loss')
+plt.xlabel('epoch')
+```
+
+In order to visualize how good out output model fits the data points we can call the plot_fit function we made in last section 
+```
+plot_fit("Trained Model")
+```
+
+If this is your first time applying a machine learning algorithm it is a pretty big step, Congratulations !  
