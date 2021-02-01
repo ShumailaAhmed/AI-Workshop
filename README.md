@@ -410,3 +410,39 @@ For every data point, the error is given by diffrence between predicted and true
 It is obtained by subtracting the prediction at a point by actual Y value, the greater the diffrence, greater is the error. 
 
 ![Error in prediction](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/error.png)
+
+The prediction is given as the 
+```math
+y' = w*X+b
+```
+
+The error between predicted and actual value is given as 
+
+```math
+Loss = (y-y')^2
+Loss = (y-w*X+b)^2
+```
+Consider a point (3,-3), according to our weight and bias value, the predicted value 
+
+```math
+y' = 0.5152631998062134*3-0.44137823581695557
+y' = 1.1044113636 
+```
+
+The loss can be calculated as 
+
+```math
+Loss = (3-1.1044113636)^2
+Loss = 3.59325627845
+```
+### Gradient Descent
+
+Our goal is to minimize this loss to ideally zero, or as close to zero as possible. Next we need to find a way to train our model to determine weight parameters which will minimize the error function the most.  
+
+The answer is GRADIENT DESCENT !  
+
+Here are the steps
+1. Initialize the Linear model with random weights 
+2. Based on error associated with these initial parameters we want to move in the direction that gives us the smallest error.
+
+![Gradient Descent](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/gradientdescent.gif)
