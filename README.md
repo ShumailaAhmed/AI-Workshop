@@ -458,3 +458,8 @@ If we take the gradient of our error function (i.e the derivative), the slope of
   
 ### Mean Squared Error
 ![Mean Squared Error](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mse.gif)
+
+The mean squared error is the summation of the error for each point. 
+
+![Error Equation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mean_squared_error.svg)
+
