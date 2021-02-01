@@ -407,5 +407,6 @@ We will continue this until we get line with least error.
 
 For every data point, the error is given by diffrence between predicted and true value. 
 
-![Error ](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/Figure_1.png)
+It is obtained by subtracting the prediction at a point by actual Y value, the greater the diffrence, greater is the error. 
 
+![Error in prediction](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/error.png)
