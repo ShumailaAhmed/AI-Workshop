@@ -464,8 +464,22 @@ The mean squared error is the summation of the error for each point, given by fo
 ![Error Equation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mean_squared_error.svg)
 
 
-substituting the prediction equation we get the following loss as a function of 
+substituting the prediction equation we get the following loss as a function of the parameters w and b.
 ![Error Equation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/lossfunction.jpeg)
 
+In mean squared error we take average over the data points (n)  
+  
+### Updating the parameters
 
+For every itteration the new weight  w1 is given by 
+  
+```math
+m1 = m0 - LR * f'(w)
+```
+while the new bias term is given by 
+
+```math
+m1 = b0 - LR * f'(b)
+```
+We dont have to worry on about the math when we code, its just to know what is going behind the scene.
 
