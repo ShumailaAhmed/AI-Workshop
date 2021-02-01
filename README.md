@@ -446,3 +446,15 @@ Here are the steps
 2. Based on error associated with these initial parameters we want to move in the direction that gives us the smallest error.
 
 ![Gradient Descent](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/gradientdescent.gif)
+
+If we take the gradient of our error function (i.e the derivative), the slope of the tangent at the current value takes us in the direction of the highest error so we move in the direction -ve to the gradient, that will take us in the direction of the lowest error. So we take the current weight and subtract derivative of that function at that point.   
+
+ We descent with the gradient, but to ensure optimal results we should descend in very small steps. For this we multiply the gradient with a very small number called as **Learning Rate** 
+ 
+ ### Learning Rate
+ 
+ The standard starting values of learning rate is 1/10. The learning rate ensures that the we are converging adequately, high learning rate might result in divergent behaviour. We adjust the learning rate based on imperical results. 
+ 
+  
+### Mean Squared Error
+![Mean Squared Error](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mse.gif)
