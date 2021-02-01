@@ -339,7 +339,7 @@ Next we perform training so as to learn new weights and bias values based on giv
 
 ### Making Data 
 Before we learn the concepts related to the model and train a model on the data we need to create and visualize the data, so lets do that
-we are going to make following data
+we are going to make following data  
 ![Data Visualization](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/data.png)
 
 
