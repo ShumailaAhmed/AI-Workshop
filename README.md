@@ -533,3 +533,18 @@ plot_fit("Trained Model")
 ```
 
 If this is your first time applying a machine learning algorithm it is a pretty big step, Congratulations !  
+
+Right now we trained a model to fit a set of datapoints. Next step is to learn how to use a Linear model to classify between two discrete classes of data points.
+
+## Introduction To Perceptron 
+
+A perceptron is a single layered neural network, most basic form of a neural network. NNs are inspired by biological nerual networks. 
+
+### What is deep learning 
+
+Deep learning leverages the use of deep neural networks. It emulates the way we humans learn, it is widely used to learn patterns from observational data.  
+The deeper the network, more complex information the network can learn. 
+
+
+![Gradient Descent](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/neuralnet.png)
+
