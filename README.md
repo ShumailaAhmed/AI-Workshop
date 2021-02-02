@@ -613,7 +613,8 @@ The Perceptron model can be shown as following
 The input features and parameters are passed into the neuron to predict the output, which is then passed through the activation function. 
 
 ### Implementation 
-'''
+
+```
 #continued from previous section 
 class Model(nn.Module): #define a model class as we did earlier
     def __init__(self, input_size, output_size): #add arguments input size and output size as with perceptron structure 
