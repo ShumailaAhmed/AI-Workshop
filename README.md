@@ -653,3 +653,91 @@ As we can see the initial model is not a best fit for out data, so we will apply
 
 ![Initial Parameters before optimization](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/initial_model.png)
 
+
+### Model Training 
+
+As we discussed the criterion by which we will compute the error of the model is cross entropy loss. Since we have two classes, we will use binary cross entropy loss. 
+
+```
+criterion = nn.BCELoss() #binary loss cross entropy  
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01) # define loss function schocastic gradient descent
+```
+Time to train the model, we will train for specified no of epochs, we itterate through data set, calculate error function, back propagate the gradient of error and update weight and bias.
+
+```
+epochs = 1000
+losses = []
+
+for i in range(epochs):
+  y_pred = model.forward(x_data) #grab prediction
+  loss = criterion(y_pred, y_data) #get loss as per criteria binary cross entropy
+  print("epoch:", i, "loss:", loss.item()) #print epoch and loss
+  losses.append(loss.item()) 
+  optimizer.zero_grad() # avoid accumulation
+  loss.backward() #compute the gradient
+  optimizer.step() # update params, the step method is used to do so
+```
+Notice the raining code is very similar to the one we did in linear regression, this is because process doen not change while training neural model. Either we classify the data into discrete classes or fit a model into continous set of data points it does not change the training process majorly.  
+
+Plot the training process to visualize, 
+
+```
+plt.plot(range(epochs), losses)
+plt.ylabel('Loss')
+plt.xlabel('epoch')
+plt.grid()
+```
+![Training Process](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/training progress.png)
+
+Lets see how well we fit out data. 
+
+```
+plot_fit("Trained Model")
+```
+![Initial Parameters before optimization](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/final_model.png)
+
+As we can see we now fit the model much adequately. 
+
+
+### Model Testing
+
+We might also want to choose a new unlabelled data and let the model predict its class. Do do so we can do as following
+
+```
+point1 = torch.Tensor([1.0, -1.0])
+point2 = torch.Tensor([-1.0, 1.0])
+plt.plot(point1.numpy()[0], point1.numpy()[1], 'ro')
+plt.plot(point2.numpy()[0], point2.numpy()[1], 'ko')
+plot_fit("Trained Model")
+#blue are class 0
+#red point class 1
+print("Red point positive probability = {}".format(model.forward(point1).item())) 
+print("Black point positive probability = {}".format(model.forward(point2).item())) 
+
+
+```
+As we can see our model gives confirming probabilities, we also male pridict method in out model class
+
+```
+class Model(nn.Module): #define a model class as we did earlier
+    def __init__(self, input_size, output_size): #add arguments input size and output size as with perceptron structure 
+      super().__init__() #for class inheritence
+      self.linear = nn.Linear(input_size, output_size)
+    def forward(self, x): #To make prediction we define forward function
+      pred = torch.sigmoid(self.linear(x)) #for each forward pass we pass the x through linear function and then through sigmoid activation function to get the probabilities
+      return pred #return the prediction
+    def predict(self, x):
+      pred = self.forward(x) # and call the forward pass
+      if pred >= 0.5: 
+        return 1
+      else:
+        return 0        
+```
+
+and get the class prediction
+
+```
+print("Red point belongs in class {}".format(model.predict(point1))) 
+print("Black point belongs in class = {}".format(model.predict(point2))) 
+```
+
