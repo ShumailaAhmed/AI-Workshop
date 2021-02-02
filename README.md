@@ -633,9 +633,8 @@ print(list(model.parameters())) # we get weight 1 weight 2 and bias
 w1, w2 = w.view(2) # unpack tuple into w1 and w2
 def get_params():
   return (w1.item(), w2.item(), b[0].item()) #get the python number from tensor values
-'''
-
-to visualize we can use following code
+```
+to visualize we can use following code making utility of matplotlib
 
 ```
 def plot_fit(title):
@@ -650,5 +649,7 @@ def plot_fit(title):
 plot_fit('Initial Model')  
 ```
 
+As we can see the initial model is not a best fit for out data, so we will apply gradient descent to train it.
 
+![Initial Parameters before optimization](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/initial_model.png)
 
