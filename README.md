@@ -591,7 +591,7 @@ The task of classification uses previously labeled data to learn how to classify
 ![Classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/classification.gif)
 
 
-The randomly initiated line calculates the error and based on magnitude of error, it re-adjusts the parameters of model to minimize the error, but **hoe do we calculate the error? **  
+The randomly initiated line calculates the error and based on magnitude of error, it re-adjusts the parameters of model to minimize the error, but **how do we calculate the error? **  
 
 We use a continous error function and assign the miss-classified points with a big penalty. The bigger the error, bigger the penalty, hence the error variations will account for the direction we need to move into, so as to reduce the error function.  
 
@@ -606,6 +606,6 @@ Mathematically we calculate the loss using cross entropy function.
 
 ![Cross Entropy Loss Equation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/crossentropyloss.png)
 
+
+
 ### Implementation 
-
-
