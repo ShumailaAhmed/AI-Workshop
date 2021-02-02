@@ -610,9 +610,44 @@ The Perceptron model can be shown as following
 
 ![Perceptron](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/percepton.png)
 
-The input features and parameters are passed into the neuron to predict the output, which is then passed through the activation function 
+The input features and parameters are passed into the neuron to predict the output, which is then passed through the activation function. 
 
 ### Implementation 
 '''
 #continued from previous section 
+class Model(nn.Module): #define a model class as we did earlier
+    def __init__(self, input_size, output_size): #add arguments input size and output size as with perceptron structure 
+      super().__init__() #for class inheritence
+      self.linear = nn.Linear(input_size, output_size)
+    def forward(self, x): #To make prediction we define forward function
+      pred = torch.sigmoid(self.linear(x)) #for each forward pass we pass the x through linear function and then through sigmoid activation function to get the probabilities
+      return pred #return the prediction
+      
+torch.manual_seed(2) #for reproducibility
+model = Model(2, 1) # pass 2 input features and get one pred output
+print(list(model.parameters())) # we get weight 1 weight 2 and bias
+#these are not optimal
+
+[w, b] = model.parameters() #extract the parameters by unpacking into list of two elements
+w1, w2 = w.view(2) # unpack tuple into w1 and w2
+def get_params():
+  return (w1.item(), w2.item(), b[0].item()) #get the python number from tensor values
 '''
+
+to visualize we can use following code
+
+```
+def plot_fit(title):
+  plt.title = title
+  w1, w2, b1 = get_params()
+  x1 = np.array([-2, 2])
+  x2 = (w1*x1 + b1)/(-w2) # equation of the line 
+  plt.plot(x1, x2, 'r')
+  scatter_plot()
+  plt.show()
+  
+plot_fit('Initial Model')  
+```
+
+
+
