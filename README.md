@@ -608,6 +608,6 @@ Mathematically we calculate the loss using cross entropy function.
 
 The Perceptron model can be shown as following 
 
-![Perceptron](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/perceptron.png)
+![Perceptron](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/percepton.png)
 
 ### Implementation 
