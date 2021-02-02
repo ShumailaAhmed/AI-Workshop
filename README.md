@@ -548,3 +548,8 @@ The deeper the network, more complex information the network can learn.
 
 ![Gradient Descent](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/neuralnet.png)
 
+![Classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/classification.gif)
+
+
+### Implementation 
+
