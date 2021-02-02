@@ -548,8 +548,44 @@ The deeper the network, more complex information the network can learn.
 
 ![Gradient Descent](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/neuralnet.png)
 
-![Classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/classification.gif)
+### Creating Dataset
+To import the dataset we will use sklearn. Sklearn provides access to many perprepared datasets.
+```
+import torch
+import numpy as np
+import matplotlib.pyplot as plt
+import torch.nn as nn
+from sklearn import datasets
+```
+For manuipulating the dataset we will use numpy and for plotting and visualization we will make use of matplotLib
+
+```
+  n_pts = 100 #define noumber of points we want
+  centers = [[-0.5, 0.5], [0.5, -0.5]]#define the center cord for cluster, we have two clusters so we need two centeroids, nested list
+  X, y = datasets.make_blobs(n_samples=n_pts, random_state=123, centers=centers, cluster_std=0.4) #creates a cluster of data points randomly centered around a defined centerpoint
+  #random state is similar to seed for reproducibility
+  #std is the standard deviation of points from respective centerpoint
+  #the data lies in X and labels lies in y
+  print(X)
+  print(y) #y contains the labels 0 and 1 
+  x_data = torch.Tensor(X)
+  y_data = torch.Tensor(y.reshape(100, 1))
+  #print(y.shape)
+```
+In order to visualize the data we can plot the data we have just created
+
+```
+def scatter_plot():
+  plt.scatter(X[y==0, 0], X[y==0, 1]) #plot the data points with label 0, do a boolean check and g
+  plt.scatter(X[y==1, 0], X[y==1, 1]) #plot the 
+  
+scatter_plot()
+```
+![Data for classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/dataForClassification.png)
+
+
 
 
 ### Implementation 
 
+![Classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/classification.gif)
