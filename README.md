@@ -584,8 +584,28 @@ scatter_plot()
 ![Data for classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/dataForClassification.png)
 
 
+Now that we have the data we need to classify, lets take a look at how we are going to accomplish the task and what are the underlying concepts involved.  
 
+The task of classification uses previously labeled data to learn how to classify a new unseen data. The model like linear regression starts with some random initialization and makes prediction which is most likely wrong. Then model will be trained through some optimization function, through many itterations until it reaches the parameter values which perform considerably well. We use previously labelled data to train the model, and get predictions on new data which does not have a label. Model is basically equation of a line, we predict on basis of weather the point lies above or below the line. Refer the following image
+
+![Classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/classification.gif)
+
+
+The randomly initiated line calculates the error and based on magnitude of error, it re-adjusts the parameters of model to minimize the error, but **hoe do we calculate the error? **  
+
+We use a continous error function and assign the miss-classified points with a big penalty. The bigger the error, bigger the penalty, hence the error variations will account for the direction we need to move into, so as to reduce the error function.  
+
+The total error is the _sum of penalties associated with each point_ . 
+
+### Concept of Cross Entropy Loss
+Mathematically we calculate the loss using cross entropy function. 
+1. For each point, if it lies above the line it has a probability closer to 0  
+2. For each point if the point lies below the line it has a probability closer to 1
+3. Each point is assigned some probability 
+4. To compute cross entropy loss we find summation of logarithm of each probability 
+
+![Cross Entropy Loss Equation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/crossentropyloss.png)
 
 ### Implementation 
 
-![Classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/classification.gif)
+
