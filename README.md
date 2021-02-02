@@ -741,3 +741,13 @@ print("Red point belongs in class {}".format(model.predict(point1)))
 print("Black point belongs in class = {}".format(model.predict(point2))) 
 ```
 
+Form here we train much deeper neural network ! Good Job on your very first NN implementation.
+
+
+### Linearly insaperable data and Deep Neural Networks
+
+Real data is not always linearly seperable by a straight line, we at many instances will need non linear boundries as we get into more complex data. For this task we will use deep neural networks. 
+
+![Linearly insaperable data](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/nonlineardata.png)
+
+
