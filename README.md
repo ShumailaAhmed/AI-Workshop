@@ -750,4 +750,8 @@ Real data is not always linearly seperable by a straight line, we at many instan
 
 ![Linearly insaperable data](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/nonlineardata.png)
 
+It is evident that the data can not be distinguished into two classes using a linear function hence we need to obtain a curve for the classification. To do so we need to combine two perceptrons
 
+![Combining two models](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/linear_combination.gif)
+
+linearly combining existing models to create new models that better classify our data is core complex neural network.
