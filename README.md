@@ -610,4 +610,9 @@ The Perceptron model can be shown as following
 
 ![Perceptron](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/percepton.png)
 
+The input features and parameters are passed into the neuron to predict the output, which is then passed through the activation function 
+
 ### Implementation 
+'''
+#continued from previous section 
+'''
