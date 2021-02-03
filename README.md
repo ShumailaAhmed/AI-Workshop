@@ -996,6 +996,9 @@ etc
 One key note to mention here ! when dealing with the multiclass data we commonly make use of softmax function in output layer, rather than sigmoid function. 
 
 ### Code Implementation Mnist
+```
+!pip3 install pillow==4.0.0
+```
 
 ```
 import torch
@@ -1133,9 +1136,8 @@ plt.legend()
 ```
 
 
-```!pip3 install pillow==4.0.0
+```
 import PIL.ImageOps
-
 ```
 
 ```
