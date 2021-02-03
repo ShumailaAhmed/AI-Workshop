@@ -933,7 +933,11 @@ The Mnist dataset consists of 10 classes 0-9 in which we can classify numbers. T
 
 ![Model to classify mnist](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist1.gif) | ![Model In Action](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist2.gif)
 
-Our goal is to train a model, capable to classify hand written digits into proper classes. To do so first we introduce the concept of training dataset and a test set. In real world applications we are concerned to train machine learning algorithms to perform well on unseen data since this determines how well it will work when it is deployed in real world. When a model is trained to fit a training data, but not generalized to classify new data that it has never seen before, it fails to perform correctly. *The ability to correctly classify newly inputed data which dont have a label is called as Generalization *.   
+Our goal is to train a model, capable to classify hand written digits into proper classes. To do so first we introduce the concept of training dataset and a test set. 
+
+### Concept of Train Set and Test Set
+
+In real world applications we are concerned to train machine learning algorithms to perform well on unseen data since this determines how well it will work when it is deployed in real world. When a model is trained to fit a training data, but not generalized to classify new data that it has never seen before, it fails to perform correctly. *The ability to correctly classify newly inputed data which dont have a label is called as Generalization *.   
 
 The problem with training classifiers is that they tend to memorise the training set. Instead to look for patterns or general features, it is just learning their labels. 
 
