@@ -935,6 +935,4 @@ The Mnist dataset consists of 10 classes 0-9 in which we can classify numbers. T
 One key note to mention here ! when dealing with the multiclass data we commonly make use of softmax function in output layer, rather than sigmoid function. 
 
 
-![Model to classify mnist](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist1.gif)
-
-![Model In Action](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist2.gif)
+![Model to classify mnist](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist1.gif) | ![Model In Action](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist2.gif)
