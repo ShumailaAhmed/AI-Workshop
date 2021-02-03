@@ -995,7 +995,7 @@ etc
 #### Note on activation function for last layer of multiclass ploblem - Softmax Activation
 One key note to mention here ! when dealing with the multiclass data we commonly make use of softmax function in output layer, rather than sigmoid function. 
 
-### Code Implementation Mnist
+### Code Implementation Mnist Fully connected network
 ```
 !pip3 install pillow==4.0.0
 ```
@@ -1180,5 +1180,11 @@ for idx in np.arange(20):
 ```
 
 
-### Code Implementation CIFAR 10
+### Code Implementation MNIST CNN
+
+### Code Implementation Cifar 10 
+
+### Code Transfer Learning
+
+
 
