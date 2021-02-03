@@ -760,8 +760,21 @@ linearly combining existing models to create new models that better classify our
 1. Forward pass
 2. Activation function
 3. Backpropogation
-4. 
+4. Optimization
 
+### Architecture of a neural network
+1. Input layer
+2. Hidden Layers
+3. Output Layers
+
+### Common Activation Functions
+1. Relu
+2. leaky Relu
+3. Tanh
+4. Sigmoid 
+etc
+
+More the no of hidden layers a nn has, the deeper it gets. We can combine many layers to obtain a very complex model. A deep NN is nothing but a multilayered perceptron. The number of hidden layers is called depth of neural network. 
 
 We can visualize the concepts on http://playground.tensorflow.org/ 
 
