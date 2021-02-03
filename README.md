@@ -929,10 +929,36 @@ MNIST dataset is the "hello world" to image recognition. Its databse of various 
 
 ![MNIST data](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist.png)
 
-The Mnist dataset consists of 10 classes 0-9 in which we can classify numbers. They are typically 28 x 28 = 784 pixels / image
-
-#### Note on activation function for last layer of multiclass ploblem - SoftMax Activation
-One key note to mention here ! when dealing with the multiclass data we commonly make use of softmax function in output layer, rather than sigmoid function. 
-
+The Mnist dataset consists of 10 classes 0-9 in which we can classify numbers. They are typically 28 x 28 = 784 pixels. Hence as shown below, our input layer will have 784 nodes and output will have 10 nodes with certain number of hidden layers with some other quantity of nodes.
 
 ![Model to classify mnist](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist1.gif) | ![Model In Action](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist2.gif)
+
+Our goal is to train a model, capable to classify hand written digits into proper classes. To do so first we introduce the concept of training dataset and a test set. In real world applications we are concerned to train machine learning algorithms to perform well on unseen data since this determines how well it will work when it is deployed in real world. When a model is trained to fit a training data, but not generalized to classify new data that it has never seen before, it fails to perform correctly. *The ability to correctly classify newly inputed data which dont have a label is called as Generalization *.   
+
+The problem with training classifiers is that they tend to memorise the training set. Instead to look for patterns or general features, it is just learning their labels. 
+
+This is where Test Set comes in, the ability of a dataset to generalize is tested using test set. 
+For a good model we want to have both training and test error to be adequately low. Ideally we want the training error to be small, and we also want gap between training error and test error to be small as well. We want our train model to effectively generalize our test data
+
+
+![Train Test Plot](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/traintesterror.png)
+
+1. Small training error corresponds to the problem of *underfitting*
+2. Gap between test and training error growing larger corresponds to *over fitting*
+
+
+### Underfitting
+
+Under fitting is when model is not provided with enough capacity for it to determine the datas underlying trend. thus it is not able to fit the training set. 
+
+
+### Overfitting 
+
+![Fitting Problems of data during training](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/fittingproblem.png)
+
+
+
+
+#### Note on activation function for last layer of multiclass ploblem - Softmax Activation
+One key note to mention here ! when dealing with the multiclass data we commonly make use of softmax function in output layer, rather than sigmoid function. 
+
