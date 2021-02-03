@@ -945,9 +945,9 @@ This is where Test Set comes in, the ability of a dataset to generalize is teste
 For a good model we want to have both training and test error to be adequately low. Ideally we want the training error to be small, and we also want gap between training error and test error to be small as well. We want our train model to effectively generalize our test data
 
 
- [[https://github.com/ShumailaAhmed/AI-Workshop/blob/main/traintesterror.png|width=100px]]
+![](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/fittingproblem.png)
 
- [[https://github.com/ShumailaAhmed/AI-Workshop/blob/main/traintesterror2.png|width=100px]]
+![](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/fittingproblem.png)
 
 
 1. Small training error corresponds to the problem of *underfitting*
