@@ -759,8 +759,9 @@ linearly combining existing models to create new models that better classify our
 ### Core concepts
 1. Forward pass
 2. Activation function
-3. Backpropagation
-4. Optimization
+3. Error calculation
+4. Backpropagation
+5. Optimization
 
 ### Architecture of a neural network
 1. Input layer
