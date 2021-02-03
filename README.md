@@ -777,6 +777,6 @@ etc
 
 More the no of hidden layers an nn has, the deeper it gets. We can combine many layers to obtain a very complex model. A deep NN is nothing but a multilayered perceptron. The number of hidden layers is called the depth of the neural network. 
 
-We can visualize the concepts on http://playground.tensorflow.org/ 
+We can visualize the concepts on http://playground.tensorflow.org/ this will give us some intutive understanding of how the neural networks work. 
 
 ### Implementation
