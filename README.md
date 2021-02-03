@@ -5,19 +5,19 @@
 
 
 ## Notes 
-Pytorch provides trnsor computation with strong gpu acceleration
-It enables convinent implementation of nural networks
+Pytorch provides tensor computation with strong GPU acceleration
+It enables the convenient implementation of neural networks
 
-Tensor is a data structure, neural nets are fundamentally  as tensors.
-A tensor is Generalization of matrices with n dimentions. 
+Tensor is a data structure, neural nets fundamentally are tensors.
+A tensor is the Generalization of matrices with n dimensions. 
 
 ![Basic Tensor Structure](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/tensors.png)
 
 
-1. a zero dimentional vector is called scalar  
-2. a one dimentional tensor is called vector   
-3. a two dimentional tensors are matrices  
-4. a 3d tensors called tensor.  
+1. a zero-dimensional vector is called scalar  
+2. a single-dimensional tensor is called a vector   
+3. two-dimensional tensors are matrices  
+4. a 3d tensors called a tensor.  
 
 ## Tensor Operations
 
@@ -32,7 +32,7 @@ print(oneDTensor)
 print(oneDTensor.dtype)
 
 ```
- Indexing Tensors is similar to indexing python list
+ Indexing Tensors is similar to indexing a python list
  
  ```
  print(oneDTensor[0])
@@ -52,7 +52,7 @@ we can also define float tensors
  print(floatTensor.dtype)
  ```
  
- size of tensor is determined by size method
+ size of a tensor is determined by the size method
  
  ```print(floatTensor.size())```
  
@@ -82,7 +82,7 @@ we can also define float tensors
 t2 = torch.tensor([1,2,3])
  ```
  
- these one dimentional tensors behave like vectors, such that if we add these vectors, each homologous value is added, similar is the case with tensor multiplication and scalar multiplication.
+ these one dimensional tensors behave like vectors, such that if we add these vectors, each homologous value is added, similar is the case with tensor multiplication and scalar multiplication.
  
  ```t1+t2
  t1 * t2
@@ -101,7 +101,7 @@ t2 = torch.tensor([1,2,3])
   torch.linspace(0,1000)
  ```
  
- we can also explicitly spicify spacing by third parameter
+ we can also explicitly specify spacing by the third parameter
  
  ```
   torch.linspace(0,1000,5)
@@ -120,15 +120,15 @@ plt.plot(x.numpy(),y.numpy())
 
 ```
 
-### Two Dimentional Tensors
+### Two Dimensional Tensors
 
-2D tensors are analogous to matrices, having some number of rows and some number of columns. Gray scale images are typical example of 2D tensors.these contain values from 0 to 255 in a single channel of information, hence these can be stored in the 2 dimentional tensors or matrices.
+2D tensors are analogous to matrices, having some number of rows and some number of columns. Grayscale images are the typical example of 2D tensors. These contain values from 0 to 255 in a single channel of information, hence these can be stored in the 2-dimensional tensors or matrices.
 
 ![2d Tensor example Gray-scale Image](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/grayscale.gif)
 
-Tensors can be extended to 3, 4 and n-dimentions.  
+Tensors can be extended to 3, 4, and n-dimensions.  
 
-Lets initialize a 1D tensor
+Let's initialize a 1D tensor
 
 ```one_d = torch.arange(2,7)
 one_d
@@ -139,14 +139,14 @@ we can also specify the step size
 one_d
 ```
 
-we can arrange 1d tensor as 2d tensor
+we can arrange a 1d tensor as a 2d tensor
 
 ```
 oneDim = torch.arange(0,9)
 twoDim = oneDim.view(3,3)
 ```
 
-we can check the dimentionality of a tensor by using the dim method
+we can check the dimensionality of a tensor by using the dim method
 
 ```
 twoDim.dim()
@@ -157,29 +157,29 @@ indexing the 2D tensor can be accomplished by
 ```
 twoDim[0,2]
 ```
-Next we can define a 3d array as follows
+Next, we can define a 3d array as follows
 ```
 x= torch.arange(18).view(2,3,3)
 x
 ```
-this reshapes 2 blocks each having 3 rows and 3 column, If we want to reshape it into 3 blocks having 2 rows and 3 columns we can accomplish this by 
+this reshapes 2 blocks each having 3 rows and 3 columns, If we want to reshape it into 3 blocks having 2 rows and 3 columns we can accomplish this by 
 ```
 x= torch.arange(18).view(3,2,3)
 x
 ```
-similarly we can have 2 blocks of 3 rows and 2 columns by 
+similarly, we can have 2 blocks of 3 rows and 2 columns by 
 ```
 x= torch.arange(18).view(3,3,2)
 x
 ```
 
-### Slicing Multidimentional Tensors
+### Slicing Multidimensional Tensors
 
-we can select single element from a 3D tensor as follows
+we can select a single element from a 3D tensor as follows
 ```
 x[1,1,1]
 ```
-if we want to slice a multidimentional tesnor we ca follow suit
+if we want to slice a multidimensional tensor we can follow suit
 
 ```
 x[1,0:2,0:3]
@@ -189,7 +189,7 @@ x[1,0:2,0:3]
 
 ### Matrix Multiplication
 
-we can perform matrix multiplication between two matrices A and B if and only if the number of columns in A is equal to number of rows in matrix B
+we can perform matrix multiplication between two matrices A and B if and only if the number of columns in A is equal to the number of rows in matrix B
 
 the resulting matrix will have rows_A x col_B size
 
@@ -207,7 +207,7 @@ matA @ matB
 
 ### Derivatives (Gradients)
 
-The derivatives represent the functions rate of change. The derivative at a point x is defined as slope of the tangent to the curve at x. 
+The derivatives represent the function rate of change. The derivative at a point x is defined as the slope of the tangent to the curve at x. 
 
 This can be achieved via python code
 
@@ -230,11 +230,11 @@ print(x.grad)
 print(z.grad)
 ```
 
-This is all, we can now use this knowlegde to train neural networks. 
+This is all, we can now use this knowledge to train neural networks. 
 
 ## Linear Regression
 
-We will get fimiliar with common machine learning algorithms and train a linear model to propoerly fit a set of data points. Here we will discuss various fundamental concepts involved in training a model, including
+We will get familiar with common machine learning algorithms and train a linear model to properly fit a set of data points. Here we will discuss various fundamental concepts involved in training a model, including
 
 1. loss function  
 2. gradient descent
@@ -245,19 +245,19 @@ We will get fimiliar with common machine learning algorithms and train a linear 
 
 #### What is Machine learning? 
 
-It is the concept of building computational algorithms that can learn overtime based on expirence. Such that rather than explicitly programming a hardcoded set of instructions, an intelligent system is given the capacity learn, detect and predict meaningful patterns. 
+It is the concept of building computational algorithms that can learn over time based on experience. Such that rather than explicitly programming a hardcoded set of instructions, an intelligent system is given the capacity to learn, detect and predict meaningful patterns. 
 
 #### Supervised Learning
-Supervised learning makes use of datasets with labelled features which define meaning of the training data. Hence when introduced to new data, the algorithm is able to produce a corresponding output. 
+Supervised learning makes use of datasets with labeled features that define the meaning of the training data. Hence when introduced to new data, the algorithm can produce a corresponding output. 
 
 ![Supervised Learning](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/supervisedlearning.gif)
 
 
-### Make Predictions using defined model
+### Make Predictions using a defined model
 
 we know the equation of a line can be modeled using the equation  
 **y = wx+b** some of you might have seen it in the form **y = mx+c**  
-Here w is the slope and b is the y intercept of the line, these parameters actually define the line. So in linear regression, our ultimate goal is to predict these parameters for a given set of datapoint
+Here w is the slope and b is the y-intercept of the line, these parameters define the line. So in linear regression, our ultimate goal is to predict these parameters for a given set of the datapoint
 
 In other words, we use the data points to train the linear model to have optimal weight and bias value to provide us with the line of best fit. 
 
@@ -333,13 +333,13 @@ x =torch.tensor([[1.0],[2.0]])
 print(model.forward(x))
 ```
 
-So we have seen 3 ways to use a simple linear regression model, or determine equation of a line. but this is the fundamental to define any complex model that we will be doing shortly.  
+So we have seen 3 ways to use a simple linear regression model or determine the equation of a line. but this is fundamental to define any complex model that we will be doing shortly.  
 
-Next we perform training so as to learn new weights and bias values based on given data. Up until this point we have not introduced any data and we were just looking at random parameters.   
+Next, we perform training to learn new weights and bias values based on given data. Up until this point we have not introduced any data and we were just looking at random parameters.   
 
 ### Making Data 
-Before we learn the concepts related to the model and train a model on the data we need to create and visualize the data, so lets do that
-we are going to make following data  
+Before we learn the concepts related to the model and train a model on the data we need to create and visualize the data, so let's do that
+we are going to make the following data  
 ![Data Visualization](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/data.png)
 
 
@@ -357,11 +357,11 @@ X = torch.randn(100, 1)*10 # returns a tensor filled with random numbers that ar
 #it by 10 to scale the values
 y = X  #this creates an x = y line with normally distributed values, but this is not very challenging 
 #y = X + 3*torch.randn(100, 1) #this adds noise in the data by shifting y value either upward or downward, so that the noise is alo normally distributed 
-#and since randn centers around zero, with small standard deviation, so to make noise reasonable significant we multiply by 3
+#and since randn centers around zero, with a small standard deviation, so to make noise reasonable significant we multiply by 3
 plt.plot(X.numpy(), y.numpy(), 'o')
 plt.ylabel('y')
 plt.xlabel('x')
-#Now that we have created the dataset, we need to train a model to fit this dataset. Before going to that lets see how our previous definition of model fits the data 
+#Now that we have created the dataset, we need to train a model to fit this dataset. Before going to that let's see how our previous definition of the model fits the data 
 ###################
 #re use the class we created earlier
 class LR(nn.Module):
@@ -401,13 +401,13 @@ As we can see the current model is a very bad fit for the data so we need to use
 
 ### Loss Function
 
-Lets Define our Goal, provided a set of data points we need to find the parameters of a line that will fit this data adequately. 
+Let's Define our Goal, provided a set of data points we need to find the parameters of a line that will fit this data adequately. 
 Since our random initialization does not fit the data we need some sort of OPTIMIZATION algorithm that will adjust the parameters based on the total error.
-We will continue this until we get line with least error. 
+We will continue this until we get a line with the least error. 
 
-For every data point, the error is given by diffrence between predicted and true value. 
+For every data point, the error is given by the difference between predicted and true value. 
 
-It is obtained by subtracting the prediction at a point by actual Y value, the greater the diffrence, greater is the error. 
+It is obtained by subtracting the prediction at a point by the actual Y value, the greater the difference, the greater is the error. 
 
 ![Error in prediction](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/error.png)
 
@@ -416,7 +416,7 @@ The prediction is given as the
 y' = w*X+b
 ```
 
-The error between predicted and actual value is given as 
+The error between the predicted and actual value is given as 
 
 ```math
 Loss = (y-y')^2
@@ -437,29 +437,29 @@ Loss = 3.59325627845
 ```
 ### Gradient Descent
 
-Our goal is to minimize this loss to ideally zero, or as close to zero as possible. Next we need to find a way to train our model to determine weight parameters which will minimize the error function the most.  
+Our goal is to minimize this loss to ideally zero, or as close to zero as possible. Next, we need to find a way to train our model to determine weight parameters that will minimize the error function the most.  
 
-The answer is GRADIENT DESCENT !  
+The answer is the GRADIENT DESCENT!  
 
 Here are the steps
 1. Initialize the Linear model with random weights 
-2. Based on error associated with these initial parameters we want to move in the direction that gives us the smallest error.
+2. Based on the error associated with these initial parameters we want to move in the direction that gives us the smallest error.
 
 ![Gradient Descent](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/gradientdescent.gif)
 
-If we take the gradient of our error function (i.e the derivative), the slope of the tangent at the current value takes us in the direction of the highest error so we move in the direction -ve to the gradient, that will take us in the direction of the lowest error. So we take the current weight and subtract derivative of that function at that point.   
+If we take the gradient of our error function (i.e the derivative), the slope of the tangent at the current value takes us in the direction of the highest error so we move in the direction -ve to the gradient, that will take us in the direction of the lowest error. So we take the current weight and subtract the derivative of that function at that point.   
 
- We descent with the gradient, but to ensure optimal results we should descend in very small steps. For this we multiply the gradient with a very small number called as **Learning Rate** 
+ We descent with the gradient, but to ensure optimal results we should descend in very small steps. For this, we multiply the gradient with a very small number called as **Learning Rate** 
  
  ### Learning Rate
  
- The standard starting values of learning rate is 1/10. The learning rate ensures that the we are converging adequately, high learning rate might result in divergent behaviour. We adjust the learning rate based on imperical results. 
+ The standard starting values of the learning rate is 1/10. The learning rate ensures that we are converging adequately, a high learning rate might result in divergent behavior. We adjust the learning rate based on empirical results. 
  
   
 ### Mean Squared Error
 ![Mean Squared Error](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mse.gif)
 
-The mean squared error is the summation of the error for each point, given by following equation.  
+The mean squared error is the summation of the error for each point, given by the following equation.  
 
 ![Error Equation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mean_squared_error.svg)
 
@@ -467,11 +467,11 @@ The mean squared error is the summation of the error for each point, given by fo
 substituting the prediction equation we get the following loss as a function of the parameters w and b.
 ![Error Equation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/lossfunction.jpeg)
 
-In mean squared error we take average over the data points (n)  
+In mean squared error, we take the average over the data points (n)  
   
 ### Updating the parameters
 
-For every itteration the new weight  w1 is given by 
+For every iteration, the new weight  w1 is given by 
   
 ```math
 m1 = m0 - LR * f'(w)
@@ -481,11 +481,11 @@ while the new bias term is given by
 ```math
 m1 = b0 - LR * f'(b)
 ```
-We dont have to worry on about the math when we code, its just to know what is going behind the scene. 
+We don't have to worry about the math when we code, its just to know what is going behind the scene. 
 
 
 ### Code Implementation
-First we define the loss function and optimizer to reduce the loss
+First, we define the loss function and optimizer to reduce the loss
 ```
 ### continued from last section
 criterion = nn.MSELoss() #we will access the builtin loss function Mean Squared Loss
@@ -498,7 +498,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr = 0.01)
 
 # in sgd we pass two arguments, one the model parameters we want to optimize and the learning rate
 ```
-Next we train the model
+Next, we train the model
 
 ```
 #epochs are the no of single pass through entire data set
@@ -519,7 +519,7 @@ for i in range(epochs):
 
 ```
 
-In order to visualize the loss wrt to the number of epochs we can plot it
+To visualize the loss wrt to the number of epochs, we can plot it
 
 ```
 plt.plot(range(epochs), losses)
@@ -527,29 +527,29 @@ plt.ylabel('Loss')
 plt.xlabel('epoch')
 ```
 
-In order to visualize how good out output model fits the data points we can call the plot_fit function we made in last section 
+To visualize how good our output model fits the data points we can call the plot_fit function we made in the last section 
 ```
 plot_fit("Trained Model")
 ```
 
-If this is your first time applying a machine learning algorithm it is a pretty big step, Congratulations !  
+If this is your first time applying a machine learning algorithm it is a pretty big step, Congratulations!  
 
-Right now we trained a model to fit a set of datapoints. Next step is to learn how to use a Linear model to classify between two discrete classes of data points.
+Right now we trained a model to fit a set of data points. The next step is to learn how to use a Linear model to classify between two discrete classes of data points.
 
 ## Introduction To Perceptron 
 
-A perceptron is a single layered neural network, most basic form of a neural network. NNs are inspired by biological nerual networks. 
+A perceptron is a single-layered neural network, the most basic form of a neural network. NNs are inspired by biological neural networks. 
 
 ### What is deep learning 
 
 Deep learning leverages the use of deep neural networks. It emulates the way we humans learn, it is widely used to learn patterns from observational data.  
-The deeper the network, more complex information the network can learn. 
+The deeper the network, the more complex information the network can learn. 
 
 
 ![Gradient Descent](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/neuralnet.png)
 
 ### Creating Dataset
-To import the dataset we will use sklearn. Sklearn provides access to many perprepared datasets.
+To import the dataset we will use sklearn. Sklearn provides access to many preprepared datasets.
 ```
 import torch
 import numpy as np
@@ -557,7 +557,7 @@ import matplotlib.pyplot as plt
 import torch.nn as nn
 from sklearn import datasets
 ```
-For manuipulating the dataset we will use numpy and for plotting and visualization we will make use of matplotLib
+For manipulating the dataset we will use numpy and for plotting and visualization we will make use of matplotLib
 
 ```
   n_pts = 100 #define noumber of points we want
@@ -572,7 +572,7 @@ For manuipulating the dataset we will use numpy and for plotting and visualizati
   y_data = torch.Tensor(y.reshape(100, 1))
   #print(y.shape)
 ```
-In order to visualize the data we can plot the data we have just created
+To visualize the data we can plot the data we have just created
 
 ```
 def scatter_plot():
@@ -584,29 +584,29 @@ scatter_plot()
 ![Data for classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/dataForClassification.png)
 
 
-Now that we have the data we need to classify, lets take a look at how we are going to accomplish the task and what are the underlying concepts involved.  
+Now that we have the data we need to classify, let's take a look at how we are going to accomplish the task and what are the underlying concepts involved.  
 
-The task of classification uses previously labeled data to learn how to classify a new unseen data. The model like linear regression starts with some random initialization and makes prediction which is most likely wrong. Then model will be trained through some optimization function, through many itterations until it reaches the parameter values which perform considerably well. We use previously labelled data to train the model, and get predictions on new data which does not have a label. Model is basically equation of a line, we predict on basis of weather the point lies above or below the line. Refer the following image
+The task of classification uses previously labeled data to learn how to classify new unseen data. A model like linear regression starts with some random initialization and makes a prediction that is most likely wrong. Then the model will be trained through some optimization function, through many iterations until it reaches the parameter values which perform considerably well. We use previously labeled data to train the model, and get predictions on new data that does not have a label. Model is the equation of a line, we predict on basis of whether the point lies above or below the line. Refer to the following image
 
 ![Classification](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/classification.gif)
 
 
-The randomly initiated line calculates the error and based on magnitude of error, it re-adjusts the parameters of model to minimize the error, but **how do we calculate the error? **  
+The randomly initiated line calculates the error and based on the magnitude of error, it re-adjusts the parameters of the model to minimize the error, but **how do we calculate the error? **  
 
-We use a continous error function and assign the miss-classified points with a big penalty. The bigger the error, bigger the penalty, hence the error variations will account for the direction we need to move into, so as to reduce the error function.  
+We use a continuous error function and assign the miss-classified points with a big penalty. The bigger the error, the bigger the penalty, hence the error variations will account for the direction we need to move into, to reduce the error function.  
 
 The total error is the _sum of penalties associated with each point_ . 
 
-### Concept of Cross Entropy Loss
-Mathematically we calculate the loss using cross entropy function. 
+### Concept of Cross-Entropy Loss
+Mathematically we calculate the loss using cross-entropy function. 
 1. For each point, if it lies above the line it has a probability closer to 0  
 2. For each point if the point lies below the line it has a probability closer to 1
 3. Each point is assigned some probability 
-4. To compute cross entropy loss we find summation of logarithm of each probability 
+4. To compute cross-entropy loss we find the summation of the logarithm of each probability 
 
 ![Cross Entropy Loss Equation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/crossentropyloss.png)
 
-The Perceptron model can be shown as following 
+The Perceptron model can be shown as follows 
 
 ![Perceptron](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/percepton.png)
 
@@ -634,7 +634,7 @@ w1, w2 = w.view(2) # unpack tuple into w1 and w2
 def get_params():
   return (w1.item(), w2.item(), b[0].item()) #get the python number from tensor values
 ```
-to visualize we can use following code making utility of matplotlib
+to visualize we can use the following code making utility of matplotlib
 
 ```
 def plot_fit(title):
@@ -649,20 +649,20 @@ def plot_fit(title):
 plot_fit('Initial Model')  
 ```
 
-As we can see the initial model is not a best fit for out data, so we will apply gradient descent to train it.
+As we can see the initial model is not the best fit for our data, so we will apply gradient descent to train it.
 
 ![Initial Parameters before optimization](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/initial_model.png)
 
 
 ### Model Training 
 
-As we discussed the criterion by which we will compute the error of the model is cross entropy loss. Since we have two classes, we will use binary cross entropy loss. 
+As we discussed the criterion by which we will compute the error of the model is a cross-entropy loss. Since we have two classes, we will use binary cross-entropy loss. 
 
 ```
 criterion = nn.BCELoss() #binary loss cross entropy  
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01) # define loss function schocastic gradient descent
 ```
-Time to train the model, we will train for specified no of epochs, we itterate through data set, calculate error function, back propagate the gradient of error and update weight and bias.
+Time to train the model, we will train for a specified no of epochs, we iterate through data set, calculate error function, backpropagate the gradient of error and update weight and bias.
 
 ```
 epochs = 1000
@@ -677,7 +677,7 @@ for i in range(epochs):
   loss.backward() #compute the gradient
   optimizer.step() # update params, the step method is used to do so
 ```
-Notice the raining code is very similar to the one we did in linear regression, this is because process doen not change while training neural model. Either we classify the data into discrete classes or fit a model into continous set of data points it does not change the training process majorly.  
+Notice the raining code is very similar to the one we did in linear regression, this is because the process does not change while training the neural model. Either we classify the data into discrete classes or fit a model into a continuous set of data points it does not change the training process majorly.  
 
 Plot the training process to visualize, 
 
@@ -689,7 +689,7 @@ plt.grid()
 ```
 ![Training Process](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/training progress.png)
 
-Lets see how well we fit out data. 
+Let's see how well we fit our data. 
 
 ```
 plot_fit("Trained Model")
@@ -701,7 +701,7 @@ As we can see we now fit the model much adequately.
 
 ### Model Testing
 
-We might also want to choose a new unlabelled data and let the model predict its class. Do do so we can do as following
+We might also want to choose new unlabelled data and let the model predict its class. Do so we can do as follows
 
 ```
 point1 = torch.Tensor([1.0, -1.0])
@@ -716,7 +716,7 @@ print("Black point positive probability = {}".format(model.forward(point2).item(
 
 
 ```
-As we can see our model gives confirming probabilities, we also male pridict method in out model class
+As we can see our model gives confirming probabilities, we also male predict method in our model class
 
 ```
 class Model(nn.Module): #define a model class as we did earlier
@@ -741,25 +741,25 @@ print("Red point belongs in class {}".format(model.predict(point1)))
 print("Black point belongs in class = {}".format(model.predict(point2))) 
 ```
 
-Form here we train much deeper neural network ! Good Job on your very first NN implementation.
+From here we train a much deeper neural network. Good Job on your very first NN implementation.
 
 
-### Linearly insaperable data and Deep Neural Networks
+### Linearly inseparable data and Deep Neural Networks
 
-Real data is not always linearly seperable by a straight line, we at many instances will need non linear boundries as we get into more complex data. For this task we will use deep neural networks. 
+Real data is not always linearly separable by a straight line, we at many instances will need non-linear boundaries as we get into more complex data. For this task, we will use deep neural networks. 
 
-![Linearly insaperable data](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/nonlineardata.png)
+![Linearly inseparable data](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/nonlineardata.png)
 
-It is evident that the data can not be distinguished into two classes using a linear function hence we need to obtain a curve for the classification. To do so we need to combine two perceptrons
+The data can not be distinguished into two classes using a linear function hence we need to obtain a curve for the classification. To do so we need to combine two perceptrons
 
 ![Combining two models](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/linear_combination.gif)
 
-linearly combining existing models to create new models that better classify our data is core concept of complex neural network. This means we will super impose two linear models to form a simple non linear model.
+linearly combining existing models to create new models that better classify our data is the core concept of a complex neural network. This means we will superimpose two linear models to form a simple nonlinear model.
 
 ### Core concepts
 1. Forward pass
 2. Activation function
-3. Backpropogation
+3. Backpropagation
 4. Optimization
 
 ### Architecture of a neural network
@@ -774,7 +774,7 @@ linearly combining existing models to create new models that better classify our
 4. Sigmoid 
 etc
 
-More the no of hidden layers a nn has, the deeper it gets. We can combine many layers to obtain a very complex model. A deep NN is nothing but a multilayered perceptron. The number of hidden layers is called depth of neural network. 
+More the no of hidden layers an nn has, the deeper it gets. We can combine many layers to obtain a very complex model. A deep NN is nothing but a multilayered perceptron. The number of hidden layers is called the depth of the neural network. 
 
 We can visualize the concepts on http://playground.tensorflow.org/ 
 
