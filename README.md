@@ -491,8 +491,8 @@ First, we define the loss function and optimizer to reduce the loss
 criterion = nn.MSELoss() #we will access the builtin loss function Mean Squared Loss
 optimizer = torch.optim.SGD(model.parameters(), lr = 0.01) 
 # we use an optimizer to update the parameter
-#we use Schocastic gradient descent algorithm 
-#schoastic gradient descent vs batch gradient descent 
+#we use Stochastic gradient descent algorithm 
+#Stochastic gradient descent vs batch gradient descent 
 #batch gradient descent finds error for everysingle data point which is computationally inefficient
 #sgd minimizes gradient descent one sample at a time, it will update weights more often.
 
@@ -660,7 +660,7 @@ As we discussed the criterion by which we will compute the error of the model is
 
 ```
 criterion = nn.BCELoss() #binary loss cross entropy  
-optimizer = torch.optim.SGD(model.parameters(), lr=0.01) # define loss function schocastic gradient descent
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01) # define loss function Stochastic gradient descent
 ```
 Time to train the model, we will train for a specified no of epochs, we iterate through data set, calculate error function, backpropagate the gradient of error and update weight and bias.
 
@@ -758,10 +758,10 @@ linearly combining existing models to create new models that better classify our
 
 ### Core concepts
 1. Forward pass
-2. Activation function
-3. Error calculation
+2. Activation function (in our case Sigmoid)
+3. Error calculation (in our case Cross entropy loss)
 4. Backpropagation
-5. Optimization
+5. Optimization (in our case Stochastic)
 
 ### Architecture of a neural network
 1. Input layer
