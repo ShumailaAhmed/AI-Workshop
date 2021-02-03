@@ -687,7 +687,7 @@ plt.ylabel('Loss')
 plt.xlabel('epoch')
 plt.grid()
 ```
-![Training Process]("https://github.com/ShumailaAhmed/AI-Workshop/blob/main/training progress.png")
+![Training Process](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/training_progress.png)
 
 Let's see how well we fit our data. 
 
