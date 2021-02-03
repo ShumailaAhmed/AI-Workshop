@@ -754,4 +754,15 @@ It is evident that the data can not be distinguished into two classes using a li
 
 ![Combining two models](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/linear_combination.gif)
 
-linearly combining existing models to create new models that better classify our data is core complex neural network.
+linearly combining existing models to create new models that better classify our data is core concept of complex neural network. This means we will super impose two linear models to form a simple non linear model.
+
+### Core concepts
+1. Forward pass
+2. Activation function
+3. Backpropogation
+4. 
+
+
+We can visualize the concepts on http://playground.tensorflow.org/ 
+
+### Implementation
