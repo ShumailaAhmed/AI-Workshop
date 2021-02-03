@@ -945,7 +945,7 @@ This is where Test Set comes in, the ability of a dataset to generalize is teste
 For a good model we want to have both training and test error to be adequately low. Ideally we want the training error to be small, and we also want gap between training error and test error to be small as well. We want our train model to effectively generalize our test data
 
 
-![Train Test Plot](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/traintesterror.png)
+![Train Test Plot](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/traintesterror.png) | ![Train Test Plot](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/traintesterror2.png)
 
 1. Small training error corresponds to the problem of *underfitting*
 2. Gap between test and training error growing larger corresponds to *over fitting*
@@ -957,6 +957,20 @@ Under fitting is when model is not provided with enough capacity for it to deter
 
 
 ### Overfitting 
+
+If model has too high capacity it get over fits the training data, it thus fails to accomodate new data.  
+
+The following image depicts the problem of overfitting and under fitting and highlights the importance of adequate model capacity for better generalization to unseen data. 
+
+If a model performs well on training data and worse on test data, we say the model is overfitted. If a model is too over fitted we can do one on following measures
+1. reduce the depth or capacity of network, number of hidden layers
+2. reduce number of nodes
+3. reduce number of epochs
+4. dropouts
+5. regularization 
+etc
+
+
 
 ![Fitting Problems of data during training](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/fittingproblem.png)
 
