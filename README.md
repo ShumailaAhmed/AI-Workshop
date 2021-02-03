@@ -780,3 +780,37 @@ More the no of hidden layers an nn has, the deeper it gets. We can combine many 
 We can visualize the concepts on http://playground.tensorflow.org/ this will give us some intutive understanding of how the neural networks work. 
 
 ### Implementation
+
+Like always start by importing relevant libraries, we are using the old code base with very few changes
+
+```
+import torch
+import numpy as np
+import matplotlib.pyplot as plt
+import torch.nn as nn
+from sklearn import datasets
+```
+We will make the dataset using sklearn make circles function
+
+```
+n_pts = 500 #change the points to 500 from 100
+X, y = datasets.make_circles(n_samples=n_pts, random_state=123, noise=0.1, factor=0.2) #we will use make circles instead of make blob
+# third argument is noise refering to standard deviation of gaussian noise. 
+# larger gaussian noise will cause data points to deviate from shape
+# factor value means dia of inner will be 20 % of outer circle
+x_data = torch.Tensor(X)
+y_data = torch.Tensor(y.reshape(500, 1)) #we have 500 point
+```
+
+next we use previous code block to plot the data for visualization purpose 
+
+```
+# plotting data
+def scatter_plot():
+  plt.scatter(X[y==0, 0], X[y==0, 1])
+  plt.scatter(X[y==1, 0], X[y==1, 1])
+```
+```
+scatter_plot()
+```
+
