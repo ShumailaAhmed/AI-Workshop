@@ -773,6 +773,15 @@ linearly combining existing models to create new models that better classify our
 2. leaky Relu
 3. Tanh
 4. Sigmoid 
+5. Softmax
+etc
+
+### Common Optimization Functions
+1. Gradient Descent
+2. Batch GD
+3. SGD
+4. GD with momentum
+5. Adam
 etc
 
 More the no of hidden layers an nn has, the deeper it gets. We can combine many layers to obtain a very complex model. A deep NN is nothing but a multilayered perceptron. The number of hidden layers is called the depth of the neural network. 
@@ -813,7 +822,7 @@ def scatter_plot():
 ```
 scatter_plot()
 ```
-# add image
+![Non linear data](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/nonlinear.png)
 
 As we can see evidently the data set can not be seprated by a single straight line and we will need a non linear function to perform this task for us. to accomplish the task we need a deep neural network. In our perceptron model we had an input layer and output layer but for our nn, as we saw a while ago, we need some quantity of hidden layers. and pass our input through entire model to accomplish the forward pass.
 
@@ -897,7 +906,7 @@ plot the decision boundry along side scatter plot of original data points
 plot_decision_boundary(X, y)
 scatter_plot()
 ```
-# add image
+![Non linear Boundries](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/nonlinearresult.png)
 
 The white region is the -ve region, and a point lying in this region will have a value of 0, the point in black region will have a prediction 1
 Now to finally test the model on an unlabelled unseen data 
@@ -912,3 +921,20 @@ print("Prediction is", prediction) # print prediction
 plot_decision_boundary(X, y) # plot decesion boundry
 ```
 
+Uptill now we have performed binary classification on linear and non linear binary data, now to increase the difficulty level we will increasse the number of classes. Will will do so by classifying images belonging to more than just 2 classes.
+
+### MNIST IMAGE RECOGNITION SECTION
+
+MNIST dataset is the "hello world" to image recognition. Its databse of various handwritten digits. 
+
+![MNIST data](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist.png)
+
+The Mnist dataset consists of 10 classes 0-9 in which we can classify numbers. They are typically 28 x 28 = 784 pixels / image
+
+#### Note on activation function for last layer of multiclass ploblem - SoftMax Activation
+One key note to mention here ! when dealing with the multiclass data we commonly make use of softmax function in output layer, rather than sigmoid function. 
+
+
+![Model to classify mnist](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist1.gif)
+
+![Model In Action](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist2.gif)
