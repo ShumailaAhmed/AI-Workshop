@@ -813,4 +813,102 @@ def scatter_plot():
 ```
 scatter_plot()
 ```
+# add image
+
+As we can see evidently the data set can not be seprated by a single straight line and we will need a non linear function to perform this task for us. to accomplish the task we need a deep neural network. In our perceptron model we had an input layer and output layer but for our nn, as we saw a while ago, we need some quantity of hidden layers. and pass our input through entire model to accomplish the forward pass.
+
+```
+class Model(nn.Module):
+  def __init__(self, input_size, H1, output_size): # here we define H1 for a hidden layer 1, and pass the number of neurons in the first hidden layer 
+    super().__init__()
+    self.linear = nn.Linear(input_size, H1) #as we are working on fully connected network, the input layer is not connected to output layer it is connected to the hidden layer
+    self.linear2 = nn.Linear(H1, output_size) # the hidden layer is then connected to the output layer. 
+  def forward(self, x): # we have to account for input in forward function
+    x = torch.sigmoid(self.linear(x)) # x is going to go through first layer and return prediction
+    x = torch.sigmoid(self.linear2(x))#  that is passed through second layer to get final prediction
+    # this is because we pass our inout through entire model.
+    return x # finally we return the prediction
+  def predict(self, x): 
+    pred = self.forward(x)
+    if pred >= 0.5:
+      return 1
+    else: 
+      return 0
+```
+Next we initialize the model by passing in the number of nodes, and initiating the model with random parameters.
+
+```
+torch.manual_seed(2)
+model = Model(2, 4, 1) # we pass 2 input nodes, 4 nodes in hidden layer and output will be 1 node
+print(list(model.parameters())) # we can see we have many more weight and bias parameters
+```
+
+For this task we will replace our SDG optimizer with Adam optimizer. In SGD we have to very mindful about the learning rate. A very small learning rate leads to slow convergence and a very large learning might induce divergent behaviour. On the other hand Adam optimizer algorithm does not maintain single weight for all weight updates, it compute adaptive learning rate. It is very popular with large model and datasets. Its is a default for practice implementations, in research and academia. 
+
+```
+criterion = nn.BCELoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01) # adam is a combination of two extensions of SDG adagrad and rmsprop , it is an adaptive algorithm
+# use lr 0.1 
+```
+
+The training process remains same 
+
+```
+epochs = 1000
+losses = []
+for i in range(epochs):
+  y_pred = model.forward(x_data)
+  loss = criterion(y_pred, y_data)
+  print("epoch:", i, "loss", loss.item())
+  losses.append(loss.item())
+  optimizer.zero_grad()
+  loss.backward()
+  optimizer.step()
+```
+plot the training process
+
+```
+plt.plot(range(epochs), losses)
+plt.ylabel('Loss')
+plt.xlabel('epoch')
+```
+
+now we need to plot the output, we will need to plot the non linear boundries in form of contours. 
+
+```
+def plot_decision_boundary(X, y): # accepts two arguments
+  x_span = np.linspace(min(X[:, 0]) -0.25, max(X[:, 0])+0.25) # define span of x of data min and max horizontal cord value 
+  #+0.25 is tolerance to better visualize
+  y_span = np.linspace(min(X[:, 1]) -0.25, max(X[:, 1])+0.25) # span of y min and max y coordinate
+  xx, yy = np.meshgrid(x_span, y_span) #get square 2d array
+  # take 50 x 1 and give 50  x 50 matrix
+  # take 1d vector and return 2d vector, making repeated copies of rows
+  grid = torch.Tensor(np.c_[xx.ravel(), yy.ravel()]) # flaten the xx and yy  and concat column wise and convert into tensor
+  # arrange in id element, flatten them
+  pred_func = model.forward(grid), feed entire grid into model for prediction
+  z = pred_func.view(xx.shape).detach().numpy() # reshape to link to grid cord counterpart so that we can view as contour
+  # detech to exclude any extra pred graph
+  #now every single cord in graph will have a corredponding pred
+  plt.contourf(xx, yy, z) # finally # plot distinct contour zone
+```
+plot the decision boundry along side scatter plot of original data points
+ 
+```
+plot_decision_boundary(X, y)
+scatter_plot()
+```
+# add image
+
+The white region is the -ve region, and a point lying in this region will have a value of 0, the point in black region will have a prediction 1
+Now to finally test the model on an unlabelled unseen data 
+
+```
+x = 0.025 # horizontal cord of point
+y = 0.025 # Y cord
+point = torch.Tensor([x, y])# define point
+prediction = model.predict(point) #get prediction
+plt.plot([x], [y], marker='o', markersize=10, color="red")#  plot the point , not the scatter
+print("Prediction is", prediction) # print prediction
+plot_decision_boundary(X, y) # plot decesion boundry
+```
 
