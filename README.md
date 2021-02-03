@@ -305,7 +305,10 @@ print(model(x))
 ```
 import torch
 import torch.nn as nn
-#########################
+    
+``` 
+``` 
+
 
 class LR(nn.Module): #the class LR will inherit from Module, LR will be sub class of nn.module and will inherit methods and variables from parent class
 #initialize the class 
@@ -316,14 +319,14 @@ class LR(nn.Module): #the class LR will inherit from Module, LR will be sub clas
     pred = self.linear(x)
     return pred
     
- ########################
- 
+``` 
+``` 
 #see the model structure 
 torch.manual_seed(1)
 model = LR(1, 1)
 print(list(model.parameters()))
-
-#########################
+```
+```
 #make predictions
 x =torch.tensor([1.0])
 print(model.forward(x))
@@ -348,7 +351,9 @@ import torch
 import torch.nn as nn
 import matplotlib.pyplot as plt
 import numpy as np
-###################
+    
+``` 
+``` 
 
 #each data point has a x and a y value
 #we will be specifying x value by using randn
@@ -362,7 +367,9 @@ plt.plot(X.numpy(), y.numpy(), 'o')
 plt.ylabel('y')
 plt.xlabel('x')
 #Now that we have created the dataset, we need to train a model to fit this dataset. Before going to that let's see how our previous definition of the model fits the data 
-###################
+    
+``` 
+``` 
 #re use the class we created earlier
 class LR(nn.Module):
   def __init__(self, input_size, output_size):
@@ -371,18 +378,24 @@ class LR(nn.Module):
   def forward(self, x):
     pred = self.linear(x)
     return pred
-###################
+    
+``` 
+``` 
     #we have random weights and bias assigned to model 
   torch.manual_seed(1)
 model = LR(1, 1)
 print(list(model.parameters()))
-###################
+    
+``` 
+``` 
 we can see what value is actually assigned to the parameters
 [w, b] = model.parameters()
 def get_params():
   return (w[0][0].item(), b[0].item()) this will return the two values as tuple
 # we are doing this because these are the parameters we will update or try to change in order to FIT the data.
-###################
+    
+``` 
+``` 
 we draw the line defined by our random parameters and see how well it fits the data
 def plot_fit(title):
   plt.title = title
@@ -392,7 +405,9 @@ def plot_fit(title):
   plt.plot(x1, y1, 'r')
   plt.scatter(X, y)
   plt.show()
-###################
+    
+``` 
+``` 
 
 plot_fit('Initial Model') 
 ```
@@ -977,7 +992,10 @@ etc
 ![Fitting Problems of data during training](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/fittingproblem.png)
 
 
-### Implementation 
+#### Note on activation function for last layer of multiclass ploblem - Softmax Activation
+One key note to mention here ! when dealing with the multiclass data we commonly make use of softmax function in output layer, rather than sigmoid function. 
+
+### Code Implementation Mnist
 
 ```
 import torch
@@ -1160,6 +1178,5 @@ for idx in np.arange(20):
 ```
 
 
-#### Note on activation function for last layer of multiclass ploblem - Softmax Activation
-One key note to mention here ! when dealing with the multiclass data we commonly make use of softmax function in output layer, rather than sigmoid function. 
+### Code Implementation CIFAR 10
 
