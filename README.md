@@ -1212,7 +1212,16 @@ for idx in np.arange(20):
   # if the label is currect we show it in green, else wise we show it in red, showing both 
   ax.set_title("{} ({})".format(str(preds[idx].item()), str(labels[idx].item())), color=("green" if preds[idx]==labels[idx] else "red"))
 ```
-This was a multi class classification problem that we approached with fully connected network. How ever the default choice for image classification problems are Convolutional neural network. 
+This was a multi class classification problem that we approached with fully connected network. However the default choice for image classification problems are Convolutional neural network. The capacity of Deep neural net will max out at a time and result in overfitting, no matter how much ypu tweak the hyperparameters. Another reason why we do not use FCN/ANN for image classification is that the MNIST is gray scale image, how ever in real world we have RGB images having much larger size.  
+
+Suppose we have a RGB image of size 480 x 360 pixels, the total number of input features will compute to 480*360*3 = 518400. This is computationally impossible for our machines. Hence we will shift our focus towards CNN
+
+## Convoloutional Neural Network
+CNNs have changed the way we classify images, as they are very effective at recognizing patterns in images by taking into account the spatial structure. ordinary NNS ignore spatial relevance of pixels, i.e images being close togather, etc. They require lower quantity of parameters when compared to ANNs. 
+
+CNNS Comprise of Convolution layers, pooling layers and fully connected layers. The name convolutional neural network comes from the convolution operations.  CNNS makes Image processing computationally manageable. All image pixels inside a convolutional layer are going to be processed by a convolutional filter called as Kernel. Kernael Martiz are small dimention matrices, We perform convolution operation by sliding the kernel at every location of image. The amount by which we are shifting the kernel at every operation is known as stride. A stride of 1 means that filer will move one pixel at a time. teh bigger the stride the smaller the corresponding feature map. 
+
+Pooloing layers continously reduce no on parameters and computations. 
 
 ### Code Implementation MNIST CNN
 
