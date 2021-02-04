@@ -1042,7 +1042,7 @@ def im_convert(tensor):
   image = image.clip(0, 1) # to ensure the range between min value 0 and max 1
   return image
 ```
-Now, we need 
+Now, we need to itterate through data
 
 ```
 dataiter = iter(training_loader) #create an object that allow us to itterate through training loader one element at a time. 
@@ -1057,7 +1057,7 @@ for idx in np.arange(20): # plot 20 images
   
 ```
 
-#now lets defing the model
+now lets defing the model
 ```
 class Classifier(nn.Module): # define class as usual
     
@@ -1074,20 +1074,25 @@ class Classifier(nn.Module): # define class as usual
         # we will not apply any activation function in last layer.
         return x
 ```
+
+#### Note on Loss function 
 Since we did not apply any activation function in last layer we will get raw output of the network. This is consideration for our loss function. The Loss we will be using for multiclass problem is nn.CrossEntropyLoss. We use CrossEntropyLoss when ever dealing with n class, it makes use of log probabilities, hence we pass output of network instead of output of softmax activation function.
 
-Cross entropy loss usses log_softmax + NLLLoss()
+Cross entropy loss usses log_softmax + NLLLoss()   
+
+Next we initiate the model. we deinfe the input output size and hidden layer node size, this is a hyper parameter which needs to be tuned and you will develop intution with practice.
 
 ```
-model = Classifier(784, 125, 65, 10)
+model = Classifier(784, 125, 65, 10) # set input dimentions while initiatin the model 
 model
 ```
 
+Set up the loss criterion and optimizer as we have done previously.
 ```
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr = 0.0001)
+optimizer = torch.optim.Adam(model.parameters(), lr = 0.0001) # we define a very low lr
 ```
-
+Now we perform the training process, specify epochs and save data for analysis along the way
 
 ```
 epochs = 15
@@ -1096,51 +1101,57 @@ running_corrects_history = []
 val_running_loss_history = []
 val_running_corrects_history = []
 
-for e in range(epochs):
-  
-  running_loss = 0.0
+for e in range(epochs): # itterate through batch
+  # initaiate some variables to claculate and track errors
+  running_loss = 0.0 # loss of each batch
   running_corrects = 0.0
   val_running_loss = 0.0
   val_running_corrects = 0.0
   
-  for inputs, labels in training_loader:
-    inputs = inputs.view(inputs.shape[0], -1)
-    outputs = model(inputs)
-    loss = criterion(outputs, labels)
+  for inputs, labels in training_loader: #for each epoch itterate through each batch
+    inputs = inputs.view(inputs.shape[0], -1) # flatten the inputs, make it one dimentional
+    outputs = model(inputs) # get predictions, make a forward pass
+    loss = criterion(outputs, labels) # calculate the loss based on cross entropy criteria
     
-    optimizer.zero_grad()
-    loss.backward()
-    optimizer.step()
+    optimizer.zero_grad() #just to avoid accumulation of gradients
+    loss.backward() #make a backward pass, back propogate
+    optimizer.step() #update weights
     
-    _, preds = torch.max(outputs, 1)
+    _, preds = torch.max(outputs, 1) # get the max score for every single image 
+    # compare the top preds with actual label
     running_loss += loss.item()
-    running_corrects += torch.sum(preds == labels.data)
+    running_corrects += torch.sum(preds == labels.data) # get number of correct prediction for every single image
 
   else:
     with torch.no_grad():
       for val_inputs, val_labels in validation_loader:
         val_inputs = val_inputs.view(val_inputs.shape[0], -1)
-        val_outputs = model(val_inputs)
-        val_loss = criterion(val_outputs, val_labels)
+        val_outputs = model(val_inputs) # get valudation prediction
+        val_loss = criterion(val_outputs, val_labels) # calculate the validation loss
         
         _, val_preds = torch.max(val_outputs, 1)
         val_running_loss += val_loss.item()
         val_running_corrects += torch.sum(val_preds == val_labels.data)
       
-    epoch_loss = running_loss/len(training_loader)
-    epoch_acc = running_corrects.float()/ len(training_loader)
-    running_loss_history.append(epoch_loss)
+    epoch_loss = running_loss/len(training_loader) # calculate epoch loss 
+    epoch_acc = running_corrects.float()/ len(training_loader) 
+    running_loss_history.append(epoch_loss) #append to loss history
     running_corrects_history.append(epoch_acc)
     
-    val_epoch_loss = val_running_loss/len(validation_loader)
+    val_epoch_loss = val_running_loss/len(validation_loader) 
     val_epoch_acc = val_running_corrects.float()/ len(validation_loader)
-    val_running_loss_history.append(val_epoch_loss)
-    val_running_corrects_history.append(val_epoch_acc)
-    print('epoch :', (e+1))
-    print('training loss: {:.4f}, acc {:.4f} '.format(epoch_loss, epoch_acc.item()))
-    print('validation loss: {:.4f}, validation acc {:.4f} '.format(val_epoch_loss, val_epoch_acc.item()))
+    val_running_loss_history.append(val_epoch_loss) # maintain validation loss hist
+    val_running_corrects_history.append(val_epoch_acc) #maintain validation accuracy hist
+    print('epoch :', (e+1)) # print current epoch number
+    print('training loss: {:.4f}, acc {:.4f} '.format(epoch_loss, epoch_acc.item())) # print training loss, and accuracy of network
+    print('validation loss: {:.4f}, validation acc {:.4f} '.format(val_epoch_loss, val_epoch_acc.item())) # print validation loss, and accuracy of network
 ```
+Lets visualize the training process.
+Change the learning rate from 0.01 to 0.001 to understand more about the hyperparameter. 
+Change the epochs from 12 to 15 to understand more about the hyperparameter. 
 
+After tuning the code we are getting good results, the network performs well on training set, but how well does it perform on validation set? 
+# comment validation code with #*
 
 ```
 plt.plot(running_loss_history, label='training loss')
