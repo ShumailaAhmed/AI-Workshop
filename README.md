@@ -1166,46 +1166,53 @@ plt.plot(val_running_corrects_history, label='validation accuracy')
 plt.legend()
 ```
 Validation accuracy shows that the model is effectively creating predictions. We can also test this model by testing the images from the web.  
+
+Load an image from web and show it
 ```
 import PIL.ImageOps
 import requests
 from PIL import Image
 
 url = 'https://images.homedepot-static.com/productImages/007164ea-d47e-4f66-8d8c-fd9f621984a2/svn/architectural-mailboxes-house-letters-numbers-3585b-5-64_1000.jpg'
-response = requests.get(url, stream = True)
-img = Image.open(response.raw)
+response = requests.get(url, stream = True) # make a get request to get data from web
+img = Image.open(response.raw) 
 plt.imshow(img)
 ```
+our image is quite diffrent from the images our model expects, so we will preporcess the image. 
 
 ```
-img = PIL.ImageOps.invert(img)
-img = img.convert('1')
-img = transform(img) 
-plt.imshow(im_convert(img))
+img = PIL.ImageOps.invert(img) # invert the image
+img = img.convert('1') this is an rgb image, we can convert this to binary image
+img = transform(img) # we use the simmilar transforms we did on our original data
+plt.imshow(im_convert(img)) # now lets show the data
 ```
 
+Now we get the prediction on the image 
+
 ```
-img = img.view(img.shape[0], -1)
-output = model(img)
+img = img.view(img.shape[0], -1) #reshape it to 1x784
+output = model(img) # get pred
 _, pred = torch.max(output, 1)
-print(pred.item())
+print(pred.item()) # print the prediction
 ```
 
+Next for further visualisation we can make predictions on validation set
 ```
-dataiter = iter(validation_loader)
-images, labels = dataiter.next()
-images_ = images.view(images.shape[0], -1)
-output = model(images_)
-_, preds = torch.max(output, 1)
+dataiter = iter(validation_loader)  # grab images from validation loader
+images, labels = dataiter.next() # grab images and labels
+images_ = images.view(images.shape[0], -1) # to make predictions reshape them into 1 x 784
+output = model(images_) # get output
+_, preds = torch.max(output, 1) # get pred
 
 fig = plt.figure(figsize=(25, 4))
 
 for idx in np.arange(20):
   ax = fig.add_subplot(2, 10, idx+1, xticks=[], yticks=[])
   plt.imshow(im_convert(images[idx]))
+  # if the label is currect we show it in green, else wise we show it in red, showing both 
   ax.set_title("{} ({})".format(str(preds[idx].item()), str(labels[idx].item())), color=("green" if preds[idx]==labels[idx] else "red"))
 ```
-
+This was a multi class classification problem that we approached with fully connected network. How ever the default choice for image classification problems are Convolutional neural network. 
 
 ### Code Implementation MNIST CNN
 
