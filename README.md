@@ -999,7 +999,8 @@ One key note to mention here ! when dealing with the multiclass data we commonly
 ```
 !pip3 install pillow==4.0.0
 ```
-
+we will start by importing relevant packages, the torch vision package is a standard package that contains many standard types of data sets. 
+it also provides common image transformations for preprocessing the dataset before feeding into the neural network. The others which we are already fimiliar with.
 ```
 import torch
 import matplotlib.pyplot as plt
@@ -1008,7 +1009,12 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms
 ```
-
+Now we load the MNIST dataset into root dir, we initialize both training and test dataset. The transform argument implements any image manipulations we wish to apply. following are the transforms we want to apply.
+1. Transform the array into a float tensor, this will transform array from value 0-255 to float tensor of 0.0-1.0
+2. Resize it to 28 x 28 size
+3. Normalize the values, passing the mean and standard deviation of 0.5. normalization helps remove skewness and distortion. 
+A training loader is what we use to specify the training batches, as passing 1 epoch with 60,000 training images is dataset will be very computationally expensive, so we pass the data in small batches, the batch size depends on the size of data and according to gpu. 
+We shuffle the data so as to avoid stucking in local minima. 
 
 ```
 transform = transforms.Compose([transforms.Resize((28,28)),
@@ -1017,47 +1023,60 @@ transform = transforms.Compose([transforms.Resize((28,28)),
                                ])
 training_dataset = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
 validation_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
-
-training_loader = torch.utils.data.DataLoader(training_dataset, batch_size=100, shuffle=True)
-validation_loader = torch.utils.data.DataLoader(validation_dataset, batch_size = 100, shuffle=False)
+#print(training_dataset)
+#print(validation_dataset)
+training_loader = torch.utils.data.DataLoader(training_dataset, batch_size=100, shuffle=True) # define batch size 100
+validation_loader = torch.utils.data.DataLoader(validation_dataset, batch_size = 100, shuffle=False) 
 ```
+
+we can analyze the images by plotting it, for this we need to change it to numpy array. Lets define a function for that
 
 ```
 def im_convert(tensor):
-  image = tensor.clone().detach().numpy()
-  image = image.transpose(1, 2, 0)
-  image = image * np.array((0.5, 0.5, 0.5)) + np.array((0.5, 0.5, 0.5))
-  image = image.clip(0, 1)
+  image = tensor.clone().detach().numpy() # we will clone, and detach and call numpy function
+  # this returns a numpy array of 1x28x28 shape corresponding to channel x width x height.
+  # to show the image we need 28 x 28 x 1 array i.e width x height x channel.
+  # hence we take a transpose
+  image = image.transpose(1, 2, 0) # swaping axis
+  image = image * np.array((0.5, 0.5, 0.5)) + np.array((0.5, 0.5, 0.5)) # now we denormalize the image by multiplying the SD and adding the mean
+  image = image.clip(0, 1) # to ensure the range between min value 0 and max 1
   return image
 ```
+Now, we need 
 
 ```
-dataiter = iter(training_loader)
-images, labels = dataiter.next()
-fig = plt.figure(figsize=(25, 4))
+dataiter = iter(training_loader) #create an object that allow us to itterate through training loader one element at a time. 
+images, labels = dataiter.next() #access next item , grabs first batch into images and label
+fig = plt.figure(figsize=(25, 4)) #create a fig for visualization
 
-for idx in np.arange(20):
-  ax = fig.add_subplot(2, 10, idx+1, xticks=[], yticks=[])
-  plt.imshow(im_convert(images[idx]))
-  ax.set_title([labels[idx].item()])
+for idx in np.arange(20): # plot 20 images 
+  ax = fig.add_subplot(2, 10, idx+1, xticks=[], yticks=[])  # 2 rows, 10 items per row
+  # x ticks remove grid lines
+  plt.imshow(im_convert(images[idx])) # call the function we created
+  ax.set_title([labels[idx].item()]) # add label in the title
   
 ```
 
 #now lets defing the model
 ```
-class Classifier(nn.Module):
+class Classifier(nn.Module): # define class as usual
     
-    def __init__(self, D_in, H1, H2, D_out):
-        super().__init__()
-        self.linear1 = nn.Linear(D_in, H1)
-        self.linear2 = nn.Linear(H1, H2)
-        self.linear3 = nn.Linear(H2, D_out)
+    def __init__(self, D_in, H1, H2, D_out):  #we will have 2 hidden layers
+        super().__init__() # for inheritence
+        self.linear1 = nn.Linear(D_in, H1) # input layer
+        self.linear2 = nn.Linear(H1, H2) # first hidden layer
+        self.linear3 = nn.Linear(H2, D_out) #output layer
+    #now from torch.nn.functional as F we use relu activation function
     def forward(self, x):
-        x = F.relu(self.linear1(x))  
-        x = F.relu(self.linear2(x))
-        x = self.linear3(x)
+        x = F.relu(self.linear1(x))   # pass input through linear 1
+        x = F.relu(self.linear2(x))  # pass output of layer 1 to layer 2
+        x = self.linear3(x) # pass`output of layer 2 into 3rd output layer
+        # we will not apply any activation function in last layer.
         return x
 ```
+Since we did not apply any activation function in last layer we will get raw output of the network. This is consideration for our loss function. The Loss we will be using for multiclass problem is nn.CrossEntropyLoss. We use CrossEntropyLoss when ever dealing with n class, it makes use of log probabilities, hence we pass output of network instead of output of softmax activation function.
+
+Cross entropy loss usses log_softmax + NLLLoss()
 
 ```
 model = Classifier(784, 125, 65, 10)
