@@ -1150,27 +1150,24 @@ Lets visualize the training process.
 Change the learning rate from 0.01 to 0.001 to understand more about the hyperparameter. 
 Change the epochs from 12 to 15 to understand more about the hyperparameter. 
 
-After tuning the code we are getting good results, the network performs well on training set, but how well does it perform on validation set? 
-# comment validation code with #*
-
 ```
 plt.plot(running_loss_history, label='training loss')
 plt.plot(val_running_loss_history, label='validation loss')
 plt.legend()
 ```
+After tuning the code we are getting good results, the network performs well on training set, but how well does it perform on validation set? 
+The results are very promising, the training error and validation error are both quite low. 
+In case there are any extreme overfitting encounters, we have to tune hyperparameters and introduce some regularization techniques.  
 
+We can plot the accuracy in pretty much same way. 
 ```
 plt.plot(running_corrects_history, label='training accuracy')
 plt.plot(val_running_corrects_history, label='validation accuracy')
 plt.legend()
 ```
-
-
+Validation accuracy shows that the model is effectively creating predictions. We can also test this model by testing the images from the web.  
 ```
 import PIL.ImageOps
-```
-
-```
 import requests
 from PIL import Image
 
@@ -1218,3 +1215,9 @@ for idx in np.arange(20):
 
 
 
+# Hyperparameters to be mindful of
+1. Learning rate
+2. No of hidden layers
+3. No of nodes in each hidden layers
+4. no of epochs
+etc
