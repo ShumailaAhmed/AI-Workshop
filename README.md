@@ -1219,7 +1219,11 @@ Suppose we have a RGB image of size 480 x 360 pixels, the total number of input 
 ## Convoloutional Neural Network
 CNNs have changed the way we classify images, as they are very effective at recognizing patterns in images by taking into account the spatial structure. ordinary NNS ignore spatial relevance of pixels, i.e images being close togather, etc. They require lower quantity of parameters when compared to ANNs. 
 
-CNNS Comprise of Convolution layers, pooling layers and fully connected layers. The name convolutional neural network comes from the convolution operations.  CNNS makes Image processing computationally manageable. All image pixels inside a convolutional layer are going to be processed by a convolutional filter called as Kernel. Kernael Martiz are small dimention matrices, We perform convolution operation by sliding the kernel at every location of image. The amount by which we are shifting the kernel at every operation is known as stride. A stride of 1 means that filer will move one pixel at a time. teh bigger the stride the smaller the corresponding feature map. 
+CNNS Comprise of Convolution layers, pooling layers and fully connected layers. The name convolutional neural network comes from the convolution operations.  CNNS makes Image processing computationally manageable. All image pixels inside a convolutional layer are going to be processed by a convolutional filter called as Kernel. Kernael Martiz are small dimention matrices, We perform convolution operation by sliding the kernel at every location of image. The amount by which we are shifting the kernel at every operation is known as stride. A stride of 1 means that filer will move one pixel at a time. teh bigger the stride the smaller the corresponding feature map. This is called feature map as primary function of the CNN is to extract specific fratures. The kernel is used as feature extractor. The more kernals we have more features we can learn. For conv operation depth of kernel must match depth of image.
+for a 480*360*3 image if we use a 3x3x3 kernel the total weight parameters will be 27, as compared to 518400 parameters of FC network. 
+
+# add conv gif 
+
 
 Pooloing layers continously reduce no on parameters and computations. 
 
