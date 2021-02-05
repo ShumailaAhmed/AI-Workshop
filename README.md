@@ -1217,6 +1217,8 @@ This was a multi class classification problem that we approached with fully conn
 Suppose we have a RGB image of size 480 x 360 pixels, the total number of input features will compute to 480*360*3 = 518400. This is computationally impossible for our machines. Hence we will shift our focus towards CNN
 
 ## Convoloutional Neural Network
+![Convolution operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cnn.jpeg)
+
 CNNs have changed the way we classify images, as they are very effective at recognizing patterns in images by taking into account the spatial structure. ordinary NNS ignore spatial relevance of pixels, i.e images being close togather, etc. They require lower quantity of parameters when compared to ANNs. There are two sections of CNN, namely feature extraction section and classification section.
 
 ### The layers of CNN
