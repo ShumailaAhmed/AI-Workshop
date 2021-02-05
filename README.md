@@ -1266,6 +1266,39 @@ In a neural nets lower layers corrspond to simple image features while higher la
 The only values that change during the training process are the values of the filter matrix in Conv layer and weights in FC layer. The process is very similar to what we have done uptil now. 
 
 ### Code Implementation MNIST CNN
+We are replacing the DNN from previous code to CNN. We are going to edit the older Classifier Class.   
+nn.Conv2d takes 4 parameters, 
+1. No of input channels
+2. No of kernels (output channels)
+3. kernel size
+4. stride
+fc layers defined as we did earlier using nn.linear
+
+![No Of Features](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/convcode.png)
+
+```
+class LeNet(nn.Module):
+    def __init__(self):
+      super().__init__()
+      self.conv1 = nn.Conv2d(1, 20, 5, 1) # 1 channel for gray scale, 20 channels, kernell size 5 and stride 1)
+      self.conv2 = nn.Conv2d(20, 50, 5, 1) # 20 input, 50 filters,filer size 5 , stride 1
+      self.fc1 = nn.Linear(4*4*50, 500) # 
+      self.dropout1 = nn.Dropout(0.5)
+      self.fc2 = nn.Linear(500, 10)
+    def forward(self, x):
+      x = F.relu(self.conv1(x))
+      x = F.max_pool2d(x, 2, 2)
+      x = F.relu(self.conv2(x))
+      x = F.max_pool2d(x, 2, 2)
+      x = x.view(-1, 4*4*50)
+      x = F.relu(self.fc1(x))
+      x = self.dropout1(x)
+      x = self.fc2(x)
+      return x
+```
+
+
+
 
 ### Code Implementation Cifar 10 
 
