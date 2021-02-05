@@ -1241,3 +1241,6 @@ Pooloing layers continously reduce no on parameters and computations.
 3. No of nodes in each hidden layers
 4. no of epochs
 etc
+
+
+![Questions](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/questions.jpeg)
