@@ -1217,13 +1217,13 @@ This was a multi class classification problem that we approached with fully conn
 Suppose we have a RGB image of size 480 x 360 pixels, the total number of input features will compute to 480*360*3 = 518400. This is computationally impossible for our machines. Hence we will shift our focus towards CNN
 
 ## Convoloutional Neural Network
-CNNs have changed the way we classify images, as they are very effective at recognizing patterns in images by taking into account the spatial structure. ordinary NNS ignore spatial relevance of pixels, i.e images being close togather, etc. They require lower quantity of parameters when compared to ANNs. 
+CNNs have changed the way we classify images, as they are very effective at recognizing patterns in images by taking into account the spatial structure. ordinary NNS ignore spatial relevance of pixels, i.e images being close togather, etc. They require lower quantity of parameters when compared to ANNs. There are two sections of CNN, namely feature extraction section and classification section.
 
 ### The layers of CNN
 CNNS Comprise of Convolution layers, pooling layers and fully connected layers. 
 
 ### The Convolution Operation
-The name convolutional neural network comes from the convolution operations.  CNNS makes Image processing computationally manageable. All image pixels inside a convolutional layer are going to be processed by a convolutional filter called as Kernel. Kernael Martiz are small dimention matrices, We perform convolution operation by sliding the kernel at every location of image. The amount by which we are shifting the kernel at every operation is known as stride. A stride of 1 means that filer will move one pixel at a time. teh bigger the stride the smaller the corresponding feature map. This is called feature map as primary function of the CNN is to extract specific fratures. The kernel is used as feature extractor. The more kernals we have more features we can learn. For conv operation depth of kernel must match depth of image.
+The name convolutional neural network comes from the convolution operations. These are key players in the CNNS. CNNS makes Image processing computationally manageable. All image pixels inside a convolutional layer are going to be processed by a convolutional filter called as Kernel. Kernael Martiz are small dimention matrices, We perform convolution operation by sliding the kernel at every location of image. The amount by which we are shifting the kernel at every operation is known as stride. A stride of 1 means that filer will move one pixel at a time. teh bigger the stride the smaller the corresponding feature map. This is called feature map as primary function of the CNN is to extract specific fratures. The kernel is used as feature extractor. The more kernals we have more features we can learn. For conv operation depth of kernel must match depth of image.
 for a 480*360*3 image if we use a 3x3x3 kernel the total weight parameters will be 27, as compared to 518400 parameters of FC network.  
 
 ![Convolution operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/rgbconv.gif)
@@ -1244,10 +1244,20 @@ Pooloing layers continously reduce no on parameters and computations. The poolin
 3. Max Pooling
 
 We will use Max pooling operation, it returns maximum output in a defined kernel region.  
-![Pooling Operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/maxpooling.gif)
+![Pooling Operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/maxpooling.gif) 
+
+The parameters associated with pooling layers is window size and stride. 
 
 
 ### The Fully Connected Layer
+The convolution and pooling layers are used for feature extraction. Once the relevant features are extracted, then the Fully Connected layers come into action to make actual classification. The FC layers assign a probability for imput image belonging to some class. Each feature map is flattened before into 1D array before it is fed to the fully connected network. The fully connected network produces final probability. this is similar to what we saw in Deep Neural Network.  
+
+
+
+
+
+In a neural nets lower layers corrspond to simple image features while higher layers correspong to more sophiscated layers of image. we can visualize this discussing in the following link https://www.cs.ryerson.ca/~aharley/vis/conv/ (flat.html). 
+
 
 
 ### Code Implementation MNIST CNN
@@ -1265,5 +1275,5 @@ We will use Max pooling operation, it returns maximum output in a defined kernel
 4. no of epochs
 etc
 
-
+# Glossary Of Workshop
 ![Questions](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/questions.jpeg)
