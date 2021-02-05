@@ -1546,6 +1546,13 @@ This is all, we can now use this knowledge to train neural networks.
 # APPENDIX III
 ## Glossary Of Workshop  
 
+# APPENDIX III
+## Prerequsite Knowledge
+1. Programming Basics
+2. Python Basics
+3. AI basics
+4. Colab Basics
+
 
 # We will love to answer more question ! We hope to see you in future training too !
 
