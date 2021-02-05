@@ -1312,6 +1312,10 @@ class LeNet(nn.Module):
       return x
 ```
 
+In case of over fitting we can introduce dropouts. 
+![Dropuots](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/dropout.png)
+
+
 ### Code Implementation Cifar 10 
 
 ### Code Transfer Learning
