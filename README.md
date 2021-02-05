@@ -1288,7 +1288,8 @@ Note:
 #model = LeNet().to(device)
 #images = images.to(device)
 #labels = labels.to(device)
-input,labels,val_inputs,val_label to device
+input,labels,val_inputs,val_label to devicetensor.cpu.clone
+
 ```
 Define our model structure
 ```
@@ -1298,7 +1299,7 @@ class LeNet(nn.Module):
       self.conv1 = nn.Conv2d(1, 20, 5, 1) # 1 channel for gray scale, 20 channels, kernell size 5 and stride 1)
       self.conv2 = nn.Conv2d(20, 50, 5, 1) # 20 input, 50 filters,filer size 5 , stride 1
       self.fc1 = nn.Linear(4*4*50, 500) # in put channels 4*4*50 (50 channels) and output is 500
-      #self.dropout1 = nn.Dropout(0.5) 
+      #self.dropout1 = nn.Dropout(0.5) # dropout rate 0.5
       self.fc2 = nn.Linear(500, 10) # 500 input and output 10
     def forward(self, x):
       x = F.relu(self.conv1(x)) # pass through first layer and take relu
@@ -1307,13 +1308,25 @@ class LeNet(nn.Module):
       x = F.max_pool2d(x, 2, 2) # 2nd pool layer
       x = x.view(-1, 4*4*50) # flatten before FC
       x = F.relu(self.fc1(x)) #pass to FC layer 1 and relu
-      #x = self.dropout1(x) 
+      #x = self.dropout1(x) # apply dropout
       x = self.fc2(x) # no relu becauese multiclass classification problem
       return x
 ```
 
-In case of over fitting we can introduce dropouts. 
+In case of over fitting we can introduce dropouts. Dropouts are special layers. It randomly disconnects random nodes. This is to reduce reliebility of network on any specific feature (node) so that all features are equally important when the network is in learning phase.This ensures independant learning of all nodes. A diffrent set of nodes are turned off at each update. Dropouts reduce generalization error. Typically dropouts are placed between layers having large number of parameters. 
 ![Dropuots](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/dropout.png)
+
+
+
+We have trained our very first CNN. We can move on to more complex CNN architectures and more complex data and more effective training techniques.  
+
+## Introduction to CIFAR-10
+We have seen MNIST Dataset which contains gray-scale single channel images. The real world data you will encounter will often be RGB image with usefull information in each channel so converting it to grayscale wont be a good idea. Cifar-10 is relatively harder to classify. It contains 50,000 training images and 10,000 Val images, containing 10 diffrent classes. For each class color, size, magnification, posses are very diverse. Each image is 32x32 images. 
+
+![CIFAR-10](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cifar.png)
+
+### Testing LeNet On Cifar-10
+
 
 
 ### Code Implementation Cifar 10 
