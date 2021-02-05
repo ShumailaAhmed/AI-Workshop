@@ -1397,7 +1397,7 @@ These two are high cost paraeters, this means that they lots of data and computa
 ### AlexNet and VGG Model
 We will use AlexNet Model for Transfer learning. Its feature extraction section consist of 5 conv layers and the classifier section consists of 3 fully connected layers.
 VGG-16 contains 13 Conv layers and 3 FC layers making 16 layers. These both are trained on ImageNet Dataset of 14 Million images, 20,000 classes. 
-![AlexNet](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/AlexNet.png)
+![AlexNet](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/AlexNet.png) |
 ![VGG(https://github.com/ShumailaAhmed/AI-Workshop/blob/main/VGG.png)
 
 
