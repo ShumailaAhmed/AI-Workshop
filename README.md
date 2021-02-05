@@ -1543,10 +1543,12 @@ print(z.grad)
 This is all, we can now use this knowledge to train neural networks. 
 
 
-
-
 # APPENDIX III
-## Glossary Of Workshop
+## Glossary Of Workshop  
+
+
+# We will love to answer more question ! We hope to see you in future training too !
+
 ![Questions](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/questions.jpeg)
 
 # Trainer Email: shumailaahmed@neduet.edu.pk
