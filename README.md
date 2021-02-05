@@ -1244,7 +1244,7 @@ Pooloing layers continously reduce no on parameters and computations. The poolin
 3. Max Pooling
 
 We will use Max pooling operation, it returns maximum output in a defined kernel region.  
-![Pooling Operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/pooling.gif)
+![Pooling Operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/maxpooling.gif)
 
 
 ### The Fully Connected Layer
