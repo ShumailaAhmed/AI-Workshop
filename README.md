@@ -124,13 +124,13 @@ import numpy as np
 ``` 
 ``` 
 
-#each data point has a x and a y value
+#each data point has an x and a y value
 #we will be specifying x value by using randn
 X = torch.randn(100, 1)*10 # returns a tensor filled with random numbers that are normally distributed
 #it will have 100 rows and 1 column, they are y default centered around zero, to change that we multiply
 #it by 10 to scale the values
 y = X  #this creates an x = y line with normally distributed values, but this is not very challenging 
-#y = X + 3*torch.randn(100, 1) #this adds noise in the data by shifting y value either upward or downward, so that the noise is alo normally distributed 
+#y = X + 3*torch.randn(100, 1) #this adds noise in the data by shifting y value either upward or downward, so that the noise is also normally distributed 
 #and since randn centers around zero, with a small standard deviation, so to make noise reasonable significant we multiply by 3
 plt.plot(X.numpy(), y.numpy(), 'o')
 plt.ylabel('y')
@@ -265,7 +265,7 @@ while the new bias term is given by
 ```math
 m1 = b0 - LR * f'(b)
 ```
-We don't have to worry about the math when we code, its just to know what is going behind the scene. 
+We don't have to worry about the math when we code, it is just to know what is going behind the scene. 
 
 
 ### Code Implementation
@@ -379,10 +379,10 @@ The randomly initiated line calculates the error and based on the magnitude of e
 
 We use a continuous error function and assign the miss-classified points with a big penalty. The bigger the error, the bigger the penalty, hence the error variations will account for the direction we need to move into, to reduce the error function.  
 
-The total error is the _sum of penalties associated with each point_ . 
+The total error is the _sum of penalties associated with each point. 
 
 ### Concept of Cross-Entropy Loss
-Mathematically we calculate the loss using cross-entropy function. 
+Mathematically we calculate the loss using the cross-entropy function. 
 1. For each point, if it lies above the line it has a probability closer to 0  
 2. For each point if the point lies below the line it has a probability closer to 1
 3. Each point is assigned some probability 
@@ -570,7 +570,7 @@ etc
 
 More the no of hidden layers an nn has, the deeper it gets. We can combine many layers to obtain a very complex model. A deep NN is nothing but a multilayered perceptron. The number of hidden layers is called the depth of the neural network. 
 
-We can visualize the concepts on http://playground.tensorflow.org/ this will give us some intutive understanding of how the neural networks work. 
+We can visualize the concepts on http://playground.tensorflow.org/ this will give us some intuitive understanding of how the neural networks work. 
 
 ### Implementation
 
@@ -595,7 +595,7 @@ x_data = torch.Tensor(X)
 y_data = torch.Tensor(y.reshape(500, 1)) #we have 500 point
 ```
 
-next we use previous code block to plot the data for visualization purpose 
+next, we use the previous code block to plot the data for visualization purpose 
 
 ```
 # plotting data
@@ -608,7 +608,7 @@ scatter_plot()
 ```
 ![Non linear data](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/nonlinear.png)
 
-As we can see evidently the data set can not be seprated by a single straight line and we will need a non linear function to perform this task for us. to accomplish the task we need a deep neural network. In our perceptron model we had an input layer and output layer but for our nn, as we saw a while ago, we need some quantity of hidden layers. and pass our input through entire model to accomplish the forward pass.
+As we can see evidently the data set can not be separated by a single straight line and we will need a non-linear function to perform this task for us. to accomplish the task we need a deep neural network. In our perceptron model, we had an input layer and output layer but for our nn, as we saw a while ago, we need some quantity of hidden layers. and pass our input through the entire model to accomplish the forward pass.
 
 ```
 class Model(nn.Module):
@@ -628,7 +628,7 @@ class Model(nn.Module):
     else: 
       return 0
 ```
-Next we initialize the model by passing in the number of nodes, and initiating the model with random parameters.
+Next, we initialize the model by passing in the number of nodes and initiating the model with random parameters.
 
 ```
 torch.manual_seed(2)
@@ -636,7 +636,7 @@ model = Model(2, 4, 1) # we pass 2 input nodes, 4 nodes in hidden layer and outp
 print(list(model.parameters())) # we can see we have many more weight and bias parameters
 ```
 
-For this task we will replace our SDG optimizer with Adam optimizer. In SGD we have to very mindful about the learning rate. A very small learning rate leads to slow convergence and a very large learning might induce divergent behaviour. On the other hand Adam optimizer algorithm does not maintain single weight for all weight updates, it compute adaptive learning rate. It is very popular with large model and datasets. Its is a default for practice implementations, in research and academia. 
+For this task, we will replace our SDG optimizer with an Adam optimizer. In SGD we have to very mindful of the learning rate. A very small learning rate leads to slow convergence and very large learning might induce divergent behavior. On the other hand, the Adam optimizer algorithm does not maintain a single LR for all weight updates, it computes the adaptive learning rate. It is very popular with large models and datasets. It is a default for practice implementations, in research and academia. 
 
 ```
 criterion = nn.BCELoss()
@@ -644,7 +644,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.01) # adam is a combinatio
 # use lr 0.1 
 ```
 
-The training process remains same 
+The training process remains the same 
 
 ```
 epochs = 1000
@@ -666,7 +666,7 @@ plt.ylabel('Loss')
 plt.xlabel('epoch')
 ```
 
-now we need to plot the output, we will need to plot the non linear boundries in form of contours. 
+now we need to plot the output, we will need to plot the nonlinear boundaries in form of contours. 
 
 ```
 def plot_decision_boundary(X, y): # accepts two arguments
@@ -684,15 +684,15 @@ def plot_decision_boundary(X, y): # accepts two arguments
   #now every single cord in graph will have a corredponding pred
   plt.contourf(xx, yy, z) # finally # plot distinct contour zone
 ```
-plot the decision boundry along side scatter plot of original data points
+plot the decision boundary alongside scatter plot of original data points
  
 ```
 plot_decision_boundary(X, y)
 scatter_plot()
 ```
-![Non linear Boundries](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/nonlinearresult.png)
+![Non-linear Boundries](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/nonlinearresult.png)
 
-The white region is the -ve region, and a point lying in this region will have a value of 0, the point in black region will have a prediction 1
+The white region is the -ve region, and a point lying in this region will have a value of 0, the point in the black region will have a prediction of 1
 Now to finally test the model on an unlabelled unseen data 
 
 ```
@@ -705,28 +705,28 @@ print("Prediction is", prediction) # print prediction
 plot_decision_boundary(X, y) # plot decesion boundry
 ```
 
-Uptill now we have performed binary classification on linear and non linear binary data, now to increase the difficulty level we will increasse the number of classes. Will will do so by classifying images belonging to more than just 2 classes.
+Until now we have performed binary classification on linear and non-linear binary data, now to increase the difficulty level we will increase the number of classes. Will will do so by classifying images belonging to more than just 2 classes.
 
 ### MNIST IMAGE RECOGNITION SECTION
 
-MNIST dataset is the "hello world" to image recognition. Its databse of various handwritten digits. 
+The MNIST dataset is the "hello world" to image recognition. Its database of various handwritten digits. 
 
 ![MNIST data](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist.png)
 
-The Mnist dataset consists of 10 classes 0-9 in which we can classify numbers. They are typically 28 x 28 = 784 pixels. Hence as shown below, our input layer will have 784 nodes and output will have 10 nodes with certain number of hidden layers with some other quantity of nodes.
+The MNIST dataset consists of 10 classes 0-9 in which we can classify numbers. They are typically 28 x 28 = 784 pixels. Hence as shown below, our input layer will have 784 nodes and output will have 10 nodes with a certain number of hidden layers with some other quantity of nodes.
 
 ![Model to classify mnist](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist1.gif) | ![Model In Action](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/mnist2.gif)
 
-Our goal is to train a model, capable to classify hand written digits into proper classes. To do so first we introduce the concept of training dataset and a test set. 
+Our goal is to train a model, capable to classify handwritten digits into proper classes. To do so first we introduce the concept of a training dataset and a test set. 
 
 ### Concept of Train Set and Test Set
 
-In real world applications we are concerned to train machine learning algorithms to perform well on unseen data since this determines how well it will work when it is deployed in real world. When a model is trained to fit a training data, but not generalized to classify new data that it has never seen before, it fails to perform correctly. *The ability to correctly classify newly inputed data which dont have a label is called as Generalization *.   
+In real-world applications, we are concerned to train machine learning algorithms to perform well on unseen data since this determines how well it will work when it is deployed in the real world. When a model is trained to fit training data, but not generalized to classify new data that it has never seen before, it fails to perform correctly. *The ability to correctly classify newly inputted data which don't have a label is called as Generalization *.   
 
-The problem with training classifiers is that they tend to memorise the training set. Instead to look for patterns or general features, it is just learning their labels. 
+The problem with training classifiers is that they tend to memorize the training set. Instead, to look for patterns or general features, it is just learning their labels. 
 
-This is where Test Set comes in, the ability of a dataset to generalize is tested using test set. 
-For a good model we want to have both training and test error to be adequately low. Ideally we want the training error to be small, and we also want gap between training error and test error to be small as well. We want our train model to effectively generalize our test data
+This is where Test Set comes in, the ability of a dataset to generalize is tested using a test set. 
+For a good model, we want to have both training and test error to be adequately low. Ideally, we want the training error to be small, and we also want the gap between training error and test error to be small as well. We want our train model to effectively generalize our test data
 
 
 
@@ -739,19 +739,19 @@ For a good model we want to have both training and test error to be adequately l
 
 ### Underfitting
 
-Under fitting is when model is not provided with enough capacity for it to determine the datas underlying trend. thus it is not able to fit the training set. 
+Underfitting is when the model is not provided with enough capacity for it to determine the data underlying trend. thus it is not able to fit the training set. 
 
 
 ### Overfitting 
 
-If model has too high capacity it get over fits the training data, it thus fails to accomodate new data.  
+If the model has a very high capacity it overfits the training data, it thus fails to accommodate new data.  
 
-The following image depicts the problem of overfitting and under fitting and highlights the importance of adequate model capacity for better generalization to unseen data. 
+The following image depicts the problem of overfitting and underfitting and highlights the importance of the adequate model capacity for better generalization to unseen data. 
 
-If a model performs well on training data and worse on test data, we say the model is overfitted. If a model is too over fitted we can do one on following measures
-1. reduce the depth or capacity of network, number of hidden layers
-2. reduce number of nodes
-3. reduce number of epochs
+If a model performs well on training data and worse on test data, we say the model is overfitted. If a model is too over fitted we can do one on the following measures
+1. reduce the depth or capacity of the network, number of hidden layers
+2. reduce the number of nodes
+3. reduce the number of epochs
 4. dropouts
 5. regularization 
 etc
@@ -762,14 +762,14 @@ etc
 
 
 #### Note on activation function for last layer of multiclass ploblem - Softmax Activation
-One key note to mention here ! when dealing with the multiclass data we commonly make use of softmax function in output layer, rather than sigmoid function. 
+One keynote to mention here! when dealing with the multiclass data we commonly make use of the softmax function in the output layer, rather than the sigmoid function. 
 
-### Code Implementation Mnist Fully connected network
+### Code Implementation MNIST Fully connected network
 ```
 !pip3 install pillow==4.0.0
 ```
 we will start by importing relevant packages, the torch vision package is a standard package that contains many standard types of data sets. 
-it also provides common image transformations for preprocessing the dataset before feeding into the neural network. The others which we are already fimiliar with.
+it also provides common image transformations for preprocessing the dataset before feeding it into the neural network. The others which we are already familiar with.
 ```
 import torch
 import matplotlib.pyplot as plt
@@ -778,12 +778,12 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms
 ```
-Now we load the MNIST dataset into root dir, we initialize both training and test dataset. The transform argument implements any image manipulations we wish to apply. following are the transforms we want to apply.
-1. Transform the array into a float tensor, this will transform array from value 0-255 to float tensor of 0.0-1.0
+Now we load the MNIST dataset into root dir, we initialize both training and test dataset. The transform argument implements any image manipulations we wish to apply. The following are the transforms we want to apply.
+1. Transform the array into a float tensor, this will transform the array from value 0-255 to a float tensor of 0.0-1.0
 2. Resize it to 28 x 28 size
 3. Normalize the values, passing the mean and standard deviation of 0.5. normalization helps remove skewness and distortion. 
-A training loader is what we use to specify the training batches, as passing 1 epoch with 60,000 training images is dataset will be very computationally expensive, so we pass the data in small batches, the batch size depends on the size of data and according to gpu. 
-We shuffle the data so as to avoid stucking in local minima. 
+A training loader is what we use to specify the training batches, as passing 1 epoch with 60,000 training images is dataset will be very computationally expensive, so we pass the data in small batches, the batch size depends on the size of data and according to GPU. 
+We shuffle the data to avoid getting stuck in local minima. 
 
 ```
 transform = transforms.Compose([transforms.Resize((28,28)),
@@ -798,20 +798,20 @@ training_loader = torch.utils.data.DataLoader(training_dataset, batch_size=100, 
 validation_loader = torch.utils.data.DataLoader(validation_dataset, batch_size = 100, shuffle=False) 
 ```
 
-we can analyze the images by plotting it, for this we need to change it to numpy array. Lets define a function for that
+we can analyze the images by plotting them, for this we need to change it to a numpy array. Let's define a function for that
 
 ```
 def im_convert(tensor):
   image = tensor.clone().detach().numpy() # we will clone, and detach and call numpy function
   # this returns a numpy array of 1x28x28 shape corresponding to channel x width x height.
-  # to show the image we need 28 x 28 x 1 array i.e width x height x channel.
+  # to show the image we need a 28 x 28 x 1 array i.e width x height x channel.
   # hence we take a transpose
   image = image.transpose(1, 2, 0) # swaping axis
   image = image * np.array((0.5, 0.5, 0.5)) + np.array((0.5, 0.5, 0.5)) # now we denormalize the image by multiplying the SD and adding the mean
   image = image.clip(0, 1) # to ensure the range between min value 0 and max 1
   return image
 ```
-Now, we need to itterate through data
+Now, we need to iterate through data
 
 ```
 dataiter = iter(training_loader) #create an object that allow us to itterate through training loader one element at a time. 
@@ -826,7 +826,7 @@ for idx in np.arange(20): # plot 20 images
   
 ```
 
-now lets defing the model
+now let's define the model
 ```
 class Classifier(nn.Module): # define class as usual
     
@@ -845,11 +845,11 @@ class Classifier(nn.Module): # define class as usual
 ```
 
 #### Note on Loss function 
-Since we did not apply any activation function in last layer we will get raw output of the network. This is consideration for our loss function. The Loss we will be using for multiclass problem is nn.CrossEntropyLoss. We use CrossEntropyLoss when ever dealing with n class, it makes use of log probabilities, hence we pass output of network instead of output of softmax activation function.
+Since we did not apply an activation function in the last layer we will get the raw output of the network. This is the consideration for our loss function. The Loss we will be using for the multiclass problem is nn.CrossEntropyLoss. We use CrossEntropyLoss whenever dealing with n class, it makes use of log probabilities, hence we pass the output of the network instead of the output of softmax activation function.
 
 Cross entropy loss usses log_softmax + NLLLoss()   
 
-Next we initiate the model. we deinfe the input output size and hidden layer node size, this is a hyper parameter which needs to be tuned and you will develop intution with practice.
+Next, we initiate the model. we define the input-output size and hidden layer node size, this is a hyperparameter that needs to be tuned and you will develop intuition with practice.
 
 ```
 model = Classifier(784, 125, 65, 10) # set input dimentions while initiatin the model 
@@ -915,7 +915,7 @@ for e in range(epochs): # itterate through batch
     print('training loss: {:.4f}, acc {:.4f} '.format(epoch_loss, epoch_acc.item())) # print training loss, and accuracy of network
     print('validation loss: {:.4f}, validation acc {:.4f} '.format(val_epoch_loss, val_epoch_acc.item())) # print validation loss, and accuracy of network
 ```
-Lets visualize the training process.
+Let's visualize the training process.
 Change the learning rate from 0.01 to 0.001 to understand more about the hyperparameter. 
 Change the epochs from 12 to 15 to understand more about the hyperparameter. 
 
@@ -924,11 +924,11 @@ plt.plot(running_loss_history, label='training loss')
 plt.plot(val_running_loss_history, label='validation loss')
 plt.legend()
 ```
-After tuning the code we are getting good results, the network performs well on training set, but how well does it perform on validation set? 
+After tuning the code we are getting good results, the network performs well on the training set, but how well does it perform on the validation set? 
 The results are very promising, the training error and validation error are both quite low. 
 In case there are any extreme overfitting encounters, we have to tune hyperparameters and introduce some regularization techniques.  
 
-We can plot the accuracy in pretty much same way. 
+We can plot the accuracy in pretty much the same way. 
 ```
 plt.plot(running_corrects_history, label='training accuracy')
 plt.plot(val_running_corrects_history, label='validation accuracy')
@@ -936,7 +936,7 @@ plt.legend()
 ```
 Validation accuracy shows that the model is effectively creating predictions. We can also test this model by testing the images from the web.  
 
-Load an image from web and show it
+Load an image from the web and show it
 ```
 import PIL.ImageOps
 import requests
@@ -947,7 +947,7 @@ response = requests.get(url, stream = True) # make a get request to get data fro
 img = Image.open(response.raw) 
 plt.imshow(img)
 ```
-our image is quite diffrent from the images our model expects, so we will preporcess the image. 
+our image is quite different from the images our model expects, so we will preprocess the image. 
 
 ```
 img = PIL.ImageOps.invert(img) # invert the image
@@ -965,7 +965,7 @@ _, pred = torch.max(output, 1)
 print(pred.item()) # print the prediction
 ```
 
-Next for further visualisation we can make predictions on validation set
+Next for further visualization, we can make predictions on the validation set
 ```
 dataiter = iter(validation_loader)  # grab images from validation loader
 images, labels = dataiter.next() # grab images and labels
@@ -981,76 +981,76 @@ for idx in np.arange(20):
   # if the label is currect we show it in green, else wise we show it in red, showing both 
   ax.set_title("{} ({})".format(str(preds[idx].item()), str(labels[idx].item())), color=("green" if preds[idx]==labels[idx] else "red"))
 ```
-This was a multi class classification problem that we approached with fully connected network. However the default choice for image classification problems are Convolutional neural network. The capacity of Deep neural net will max out at a time and result in overfitting, no matter how much ypu tweak the hyperparameters. Another reason why we do not use FCN/ANN for image classification is that the MNIST is gray scale image, how ever in real world we have RGB images having much larger size.  
+This was a multi-class classification problem that we approached with a fully connected network. However, the default choice for image classification problems is the Convolutional neural network. The capacity of a Deep neural net will max out at a time and result in overfitting, no matter how much you tweak the hyperparameters. Another reason why we do not use FCN/ANN for image classification is that the MNIST is a grayscale image, however, in the real world, we have RGB images having a much larger size.  
 
-Suppose we have a RGB image of size 480 x 360 pixels, the total number of input features will compute to 480*360*3 = 518400. This is computationally impossible for our machines. Hence we will shift our focus towards CNN
+Suppose we have an RGB image of size 480 x 360 pixels, the total number of input features will compute to 480x360x3 = 518400. This is computationally impossible for our machines. Hence we will shift our focus towards CNN
 
-## Convoloutional Neural Network
+## Convolutional Neural Network
 ![CNN](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cnn.jpeg)
 
-CNNs have changed the way we classify images, as they are very effective at recognizing patterns in images by taking into account the spatial structure. ordinary NNS ignore spatial relevance of pixels, i.e images being close togather, etc. They require lower quantity of parameters when compared to ANNs. There are two sections of CNN, namely feature extraction section and classification section.
+CNNs have changed the way we classify images, as they are very effective at recognizing patterns in images by taking into account the spatial structure. ordinary NNS ignores the spatial relevance of pixels, i.e images being close together, etc. They require a lower quantity of parameters when compared to ANNs. There are two sections of CNN, namely the feature extraction section and the classification section.
 
 ### The layers of CNN
-CNNS Comprise of Convolution layers, pooling layers and fully connected layers. 
+CNNs Comprise of Convolution layers, pooling layers, and fully connected layers. 
 
 ### The Convolution Operation
-The name convolutional neural network comes from the convolution operations. These are key players in the CNNS. CNNS makes Image processing computationally manageable. All image pixels inside a convolutional layer are going to be processed by a convolutional filter called as Kernel. Kernael Martiz are small dimention matrices, We perform convolution operation by sliding the kernel at every location of image. The amount by which we are shifting the kernel at every operation is known as stride. A stride of 1 means that filer will move one pixel at a time. teh bigger the stride the smaller the corresponding feature map. This is called feature map as primary function of the CNN is to extract specific fratures. The kernel is used as feature extractor. The more kernals we have more features we can learn. For conv operation depth of kernel must match depth of image.
-for a 480*360*3 image if we use a 3x3x3 kernel the total weight parameters will be 27, as compared to 518400 parameters of FC network.  
+The name convolutional neural network comes from the convolution operations. These are key players in the CNNS. CNNS makes Image processing computationally manageable. All image pixels inside a convolutional layer are going to be processed by a convolutional filter called Kernel. Kernel matrices are small dimension matrices, We perform convolution operation by sliding the kernel at every location of the image. The amount by which we are shifting the kernel at every operation is known as a stride. A stride of 1 means that the filer will move one pixel at a time. the bigger the stride the smaller the corresponding feature map. This is called a feature map as the primary function of the CNN is to extract specific features. The kernel is used as a feature extractor. The more kernels we have more features we can learn. For conv operation, the depth of the kernel must match the depth of the image.
+for a 480*360*3 image if we use a 3x3x3 kernel the total weight parameters will be 27, as compared to 518400 parameters of the FC network.  
 
 ![Convolution operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/rgbconv.gif)
 
 ### The Activation Function
 
-After convolution which produced a 3d feature map, we aply the relu activation function. As we have seen that the real world data is non-linear, while mathematically the convolution is a linear function. Hence to introduce non linearity we use a ReLu ( REctified Linear Unit) operation. It converts -ve values to zero and produces only +ve values. We can also alternatively use tanh or sigmoid function. Relu is however more biologically inspired. 
+After convolution which produced a 3d feature map, we apply the relu activation function. As we have seen that the real-world data is non-linear, while mathematically the convolution is a linear function. Hence to introduce nonlinearity we use a ReLu ( Rectified Linear Unit) operation. It converts -ve values to zero and produces only +ve values. We can also alternatively use tanh or sigmoid function. Relu is however more biologically inspired. 
 
 ![ReLu Activation Function](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/ReLu.png)
 
 #### Note
-The Sigmoid and Tanh function are predisposed to a very common Neuran Network problem known as VANISHING GRADIENT. this refers to a decreased feed forward gradient within Deep Neural Net.
+The Sigmoid and Tanh functions are predisposed to a very common Neuran Network problem known as VANISHING GRADIENT. this refers to a decreased feed-forward gradient within Deep Neural Net.
 
 ### The Pooling Layer
-Pooloing layers continously reduce no on parameters and computations. The pooling layer shrinks the image stack, by reducing the dimentionality of feature map. Hence it reduced the computational complexity of the model, while retaining the important information. Pooling helps to avoid overfitting. The diffrent pooling operations include 
+Pooling layers continuously reduce no on parameters and computations. The pooling layer shrinks the image stack, by reducing the dimensionality of the feature map. Hence it reduced the computational complexity of the model while retaining the important information. Pooling helps to avoid overfitting. The different pooling operations include 
 1. Sum
 2. Average
 3. Max Pooling
 
-We will use Max pooling operation, it returns maximum output in a defined kernel region.  
+We will use the Max pooling operation, it returns the maximum output in a defined kernel region.  
 ![Pooling Operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/maxpooling.gif) 
 
-The parameters associated with pooling layers is window size and stride. 
+The parameters associated with pooling layers are window size and stride. 
 
 
 ### The Fully Connected Layer
-The convolution and pooling layers are used for feature extraction. Once the relevant features are extracted, then the Fully Connected layers come into action to make actual classification. The FC layers assign a probability for imput image belonging to some class. Each feature map is flattened before into 1D array before it is fed to the fully connected network. The fully connected network produces final probability. this is similar to what we saw in Deep Neural Network.  
+The convolution and pooling layers are used for feature extraction. Once the relevant features are extracted, then the Fully Connected layers come into action to make the actual classification. The FC layers assign a probability for input image belonging to some class. Each feature map is flattened before into a 1D array before it is fed to the fully connected network. The fully connected network produces the final probability. this is similar to what we saw in Deep Neural Network.  
 
 
-In a neural nets lower layers corrspond to simple image features while higher layers correspong to more sophiscated layers of image. Before we go towards code, we can visualize the details in the following link https://www.cs.ryerson.ca/~aharley/vis/conv/ (flat.html). 
+In neural nets, lower layers correspond to simple image features while higher layers correspond to more sophisticated layers of the image. Before we go towards code, we can visualize the details in the following link https://www.cs.ryerson.ca/~aharley/vis/conv/ (flat.html). 
 
-There are various CNN models, some famous ones are LeNet, AlexNet, ResNet, GoogleNet each preciding other in terms or performance and complexity. We will start with LeNet Model. The LeNet model consist of two conv layers each followed by a pooling layer for feature extraction. Classification section of LeNet comprise of two FC layers
+There are various CNN models, some famous ones are LeNet, AlexNet, ResNet, GoogleNet each preceding other in terms of performance and complexity. We will start with LeNet Model. The LeNet model consists of two conv layers each followed by a pooling layer for feature extraction. The classification section of LeNet comprise of two FC layers
 
 ### The Training Process
 
 Following is the training procedure
 1. Random values are initialized for all filters and parameters in CONV layers and all weights and bias in FC layers
-2. Network recieves an input goes through length of NN, the feature extraction and classification layer
-3. The Classification output is compared to true label and a cross entropy loss is calculated. 
+2. Network receives an input goes through the length of NN, the feature extraction and classification layer
+3. The Classification output is compared to the true label and a cross-entropy loss is calculated. 
 4. The weights are updated to minimize the error using gradient descent. 
-The only values that change during the training process are the values of the filter matrix in Conv layer and weights in FC layer. The process is very similar to what we have done uptil now. 
+The only values that change during the training process are the values of the filter matrix in the Conv layer and weights in the FC layer. The process is very similar to what we have done until now. 
 
 
 ### Code Implementation MNIST CNN
 
-We are replacing the DNN from previous code to CNN. We are going to edit the older Classifier Class.   
+We are replacing the DNN from the previous code with CNN. We are going to edit the older Classifier Class.   
 nn.Conv2d takes 4 parameters, 
 1. No of input channels
 2. No of kernels (output channels)
 3. kernel size
 4. stride
-fc layers defined as we did earlier using nn.linear
+FC layers defined as we did earlier using nn.linear
 
 ![No Of Features](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/convcode.png)
 
-Enable gpu
+Enable GPU
 ```
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 Note:
@@ -1083,7 +1083,7 @@ class LeNet(nn.Module):
       return x
 ```
 
-In case of over fitting we can introduce dropouts. Dropouts are special layers. It randomly disconnects random nodes. This is to reduce reliebility of network on any specific feature (node) so that all features are equally important when the network is in learning phase.This ensures independant learning of all nodes. A diffrent set of nodes are turned off at each update. Dropouts reduce generalization error. Typically dropouts are placed between layers having large number of parameters. 
+In case of over fitting, we can introduce dropouts. Dropouts are special layers. It randomly disconnects random nodes. This is to reduce the reliability of the network on any specific feature (node) so that all features are equally important when the network is in the learning phase. This ensures independent learning of all nodes. A different set of nodes are turned off at each update. Dropouts reduce generalization error. Typically dropouts are placed between layers having a large number of parameters. 
 ![Dropuots](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/dropout.png)
 
 
@@ -1091,7 +1091,7 @@ In case of over fitting we can introduce dropouts. Dropouts are special layers. 
 We have trained our very first CNN. We can move on to more complex CNN architectures and more complex data and more effective training techniques.  
 
 ## Introduction to CIFAR-10
-We have seen MNIST Dataset which contains gray-scale single channel images. The real world data you will encounter will often be RGB image with usefull information in each channel so converting it to grayscale wont be a good idea. Cifar-10 is relatively harder to classify. It contains 50,000 training images and 10,000 Val images, containing 10 diffrent classes. For each class color, size, magnification, posses are very diverse. Each image is 32x32 images. 
+We have seen MNIST Dataset which contains gray-scale single-channel images. The real-world data you will encounter will often be an RGB image with useful information in each channel so converting it to grayscale won't be a good idea. Cifar-10 is relatively harder to classify. It contains 50,000 training images and 10,000 Val images, containing 10 different classes. For each class color, size, magnification, possess are very diverse. Each image is 32x32 images. 
 
 ![CIFAR-10](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cifar.png)
 
@@ -1099,19 +1099,19 @@ We have seen MNIST Dataset which contains gray-scale single channel images. The 
 Earlier for MNIST class number was equal to digit number, for cifar we can map class number to class names by making a list
 classes = ('plane', 'car','bird','cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
-Since the input size changed from 28x28 the model inputs have to be modified accorfingly
+Since the input size changed from 28x28 the model inputs have to be modified accordingly
 ![CIFAR-10](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cifarlenet.png)
 
-Since the LeNet is not performing very well generalizing, we can try tuning some hyper parameters
+Since the LeNet is not performing very well generalizing, we can try tuning some hyperparameters
 the issues we are having are 
 1. accuracy not being high enough
-2. over fitting model
+2. overfitting model
 
-The model tuning is a case dependant procedure. We can do following changes in out case
-1. Change LR, training is slow as learning between consecetive epochs is very small so we can increase LR to 0.001
+The model tuning is a case dependant procedure. We can do the following changes in our case
+1. Change LR, training is slow as learning between consecutive epochs is very small so we can increase LR to 0.001
 2. Adding more Conv Layers
 3. Since we had overfitting, so we can reduce kernel size. from 5 to 3. Its a hyperparameter we need to tune
-4. We can also include padding, in MNIST we ignored padding because of our image ROI was not in boundry region.
+4. We can also include padding, in MNIST we ignored padding because our image ROI was not in the boundary region.
 ```
 class LeNet(nn.Module):
     def __init__(self):
@@ -1136,7 +1136,7 @@ class LeNet(nn.Module):
       return x
       
 ```
-5. Additionally we can also use data augmentation techniques to increase the quantity of data for training process. This is done by altering the image in useful ways. eg zoom, rotate, crop, flip, darker shading, translation, noise etc. This create variety of existing data and adds prespective. This can be achieved with following transforms.
+5. Additionally we can also use data augmentation techniques to increase the quantity of data for the training process. This is done by altering the image in useful ways. eg zoom, rotate crop, flip, darker shading, translation, noise, etc. This creates a variety of existing data and adds perspective. This can be achieved with the following transforms.
 
 ```
 transform_train = transforms.Compose([transforms.Resize((32,32)),
@@ -1148,38 +1148,38 @@ transform_train = transforms.Compose([transforms.Resize((32,32)),
                                       transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
                                ])
 ```
-Note the transforms are applied to only training data not validation data, All available transforms and their details can be explored on following link, https://pytorch.org/docs/stable/torchvision/transforms.html
+Note the transforms are applied to only training data, not validation data, All available transforms and their details can be explored at the following link, https://pytorch.org/docs/stable/torchvision/transforms.html
  
-We can also further perform regularization techniques, tune architecture complexity and parameters and you can play with the parameters on your own. Please share your results on SmartCityLab Twitter, Facebook and LinkedIn pages. Post any errors and questions too, we will try to help you out. 
+We can also further perform regularization techniques, tune architecture complexity and parameters and you can play with the parameters on your own. Please share your results on SmartCityLab Twitter, Facebook, and LinkedIn pages. Post any errors and questions too, we will try to help you out. 
 
 
-## State of the art Pre trained Dataset
-The final skill that we will aquire is use of powerful Neural Nets for highly complex task. A good model has two main contributers
+## State of the art Pre-trained Dataset
+The final skill that we will acquire is the use of powerful Neural Nets for a highly complex task. A good model has two main contributors
 1. Model architecture
 2. Quality training
-These two are high cost paraeters, this means that they lots of data and computational power. In complex situation with time, data and computation constraints we can use the technique called transfer learning. Just like learning one programming language can help learning new language. Its a skill that is great to have on your disposal. 
+These two are high-cost parameters, this means that they lots of data and computational power. In a complex situation with time, data, and computation constraints we can use the technique called transfer learning. Just like learning one programming language can help to learn a new language. It is a skill that is great to have at your disposal. 
 
 ### When to use Transfer learning
-1. when you dont have enough labelled data
+1. when you don't have enough labeled data
 2. effective model still exists
 
 ### AlexNet and VGG Model
-We will use AlexNet Model for Transfer learning. Its feature extraction section consist of 5 conv layers and the classifier section consists of 3 fully connected layers.
+We will use the AlexNet Model for Transfer learning. Its feature extraction section consist of 5 conv layers and the classifier section consists of 3 fully connected layers.
 VGG-16 contains 13 Conv layers and 3 FC layers making 16 layers. These both are trained on ImageNet Dataset of 14 Million images, 20,000 classes. 
 ![AlexNet](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/AlexNet.png) |
 ![VGG(https://github.com/ShumailaAhmed/AI-Workshop/blob/main/VGG.png)
 
 
 ### Bees  and Ants Dataset
-It contains images from Google search, contains 400 images. They are not visually very diffrent, hence classification task is going to be very difficult. 
+It contains images from Google search, contains 400 images. They are not visually very different, hence classification task is going to be very difficult. 
 
 ### Training procedure
-For using pretrained we 
+For using pre-trained we 
 1. Freeze the parameters in the feature extraction layer
 2. We will train the FC layers and hence keep them dynamic
-3. We will add a layer at end of model with 2 nodes, since we need to classify 2 objects 
+3. We will add a layer at end of the model with 2 nodes since we need to classify 2 objects 
 
-This will help model learn which features are more important for our dataset. 
+This will help the model learn which features are more important for our dataset. 
 
 ### Code Transfer Learning
 
@@ -1194,7 +1194,7 @@ Since the AlexNet model was trained on images of size 224x224 we change the inpu
 training_dataset = datasets.ImageFolder('ants_and_bees/train', transform=transform_train)
 validation_dataset = datasets.ImageFolder('ants_and_bees/val', transform=transform)
 ```
-The data set loader makes use of folder structure to assign classes. it will assign class 0 to ands and 1 to bees. 
+The data set loader makes use of folder structure to assign classes. it will assign classes 0 to ants and 1 to bees. 
 
 ```
 print(len(training_dataset))
@@ -1223,10 +1223,10 @@ now we have the model and recall we need to freeze the feature extraction layer 
 for param in model.features.parameters():
   param.requires_grad = False
 ```
-Next we need to change the last layer of the model.
-1. We will access 6th element of classifier and access its input features. 
-2. Create new linear layer
-3. Update the previous last layer with new one
+Next, we need to change the last layer of the model.
+1. We will access the 6th element of the classifier and access its input features. 
+2. Create a new linear layer
+3. Update the previous last layer with a new one
 ```
 import torch.nn as nn
 
@@ -1331,7 +1331,7 @@ A tensor is the Generalization of matrices with n dimensions.
 
 ## Tensor Operations
 
-Open google colab  
+Open google Colabotary  
 
 ```!pip install torch
 import torchstructuren
@@ -1392,7 +1392,7 @@ we can also define float tensors
 t2 = torch.tensor([1,2,3])
  ```
  
- these one dimensional tensors behave like vectors, such that if we add these vectors, each homologous value is added, similar is the case with tensor multiplication and scalar multiplication.
+ these 1D tensors behave like vectors, such that if we add these vectors, each homologous value is added, similar is the case with tensor multiplication and scalar multiplication.
  
  ```t1+t2
  t1 * t2
@@ -1547,14 +1547,14 @@ This is all, we can now use this knowledge to train neural networks.
 ## Glossary Of Workshop  
 
 # APPENDIX III
-## Prerequsite Knowledge
+## Prerequisite Knowledge
 1. Programming Basics
 2. Python Basics
 3. AI basics
 4. Colab Basics
 
 
-# We will love to answer more question ! We hope to see you in future training too !
+# We will love to answer more questions! We hope to see you in future trainings too!
 
 ![Questions](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/questions.jpeg)
 
