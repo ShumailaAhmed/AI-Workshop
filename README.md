@@ -1219,13 +1219,36 @@ Suppose we have a RGB image of size 480 x 360 pixels, the total number of input 
 ## Convoloutional Neural Network
 CNNs have changed the way we classify images, as they are very effective at recognizing patterns in images by taking into account the spatial structure. ordinary NNS ignore spatial relevance of pixels, i.e images being close togather, etc. They require lower quantity of parameters when compared to ANNs. 
 
-CNNS Comprise of Convolution layers, pooling layers and fully connected layers. The name convolutional neural network comes from the convolution operations.  CNNS makes Image processing computationally manageable. All image pixels inside a convolutional layer are going to be processed by a convolutional filter called as Kernel. Kernael Martiz are small dimention matrices, We perform convolution operation by sliding the kernel at every location of image. The amount by which we are shifting the kernel at every operation is known as stride. A stride of 1 means that filer will move one pixel at a time. teh bigger the stride the smaller the corresponding feature map. This is called feature map as primary function of the CNN is to extract specific fratures. The kernel is used as feature extractor. The more kernals we have more features we can learn. For conv operation depth of kernel must match depth of image.
+### The layers of CNN
+CNNS Comprise of Convolution layers, pooling layers and fully connected layers. 
+
+### The Convolution Operation
+The name convolutional neural network comes from the convolution operations.  CNNS makes Image processing computationally manageable. All image pixels inside a convolutional layer are going to be processed by a convolutional filter called as Kernel. Kernael Martiz are small dimention matrices, We perform convolution operation by sliding the kernel at every location of image. The amount by which we are shifting the kernel at every operation is known as stride. A stride of 1 means that filer will move one pixel at a time. teh bigger the stride the smaller the corresponding feature map. This is called feature map as primary function of the CNN is to extract specific fratures. The kernel is used as feature extractor. The more kernals we have more features we can learn. For conv operation depth of kernel must match depth of image.
 for a 480*360*3 image if we use a 3x3x3 kernel the total weight parameters will be 27, as compared to 518400 parameters of FC network.  
 
 ![Convolution operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/rgbconv.gif)
 
+### The Activation Function
 
-Pooloing layers continously reduce no on parameters and computations. 
+After convolution which produced a 3d feature map, we aply the relu activation function. As we have seen that the real world data is non-linear, while mathematically the convolution is a linear function. Hence to introduce non linearity we use a ReLu ( REctified Linear Unit) operation. It converts -ve values to zero and produces only +ve values. We can also alternatively use tanh or sigmoid function. Relu is however more biologically inspired. 
+
+![ReLu Activation Function](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/ReLu.png)
+
+#### Note
+The Sigmoid and Tanh function are predisposed to a very common Neuran Network problem known as VANISHING GRADIENT. this refers to a decreased feed forward gradient within Deep Neural Net.
+
+### The Pooling Layer
+Pooloing layers continously reduce no on parameters and computations. The pooling layer shrinks the image stack, by reducing the dimentionality of feature map. Hence it reduced the computational complexity of the model, while retaining the important information. Pooling helps to avoid overfitting. The diffrent pooling operations include 
+1. Sum
+2. Average
+3. Max Pooling
+
+We will use Max pooling operation, it returns maximum output in a defined kernel region.  
+![Pooling Operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/pooling.gif)
+
+
+### The Fully Connected Layer
+
 
 ### Code Implementation MNIST CNN
 
