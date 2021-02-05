@@ -1326,7 +1326,11 @@ We have seen MNIST Dataset which contains gray-scale single channel images. The 
 ![CIFAR-10](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cifar.png)
 
 ### Testing LeNet On Cifar-10
+Earlier for MNIST class number was equal to digit number, for cifar we can map class number to class names by making a list
+classes = ('plane', 'car','bird','cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
+Since the input size changed from 28x28 the model inputs have to be modified accorfingly
+![CIFAR-10](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cifarlenet.png)
 
 
 ### Code Implementation Cifar 10 
