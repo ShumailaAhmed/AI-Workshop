@@ -1285,6 +1285,7 @@ Enable gpu
 ```
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 Note:
+#15 epochs
 #model = LeNet().to(device)
 #images = images.to(device)
 #labels = labels.to(device)
@@ -1332,11 +1333,196 @@ classes = ('plane', 'car','bird','cat', 'deer', 'dog', 'frog', 'horse', 'ship', 
 Since the input size changed from 28x28 the model inputs have to be modified accorfingly
 ![CIFAR-10](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cifarlenet.png)
 
+Since the LeNet is not performing very well generalizing, we can try tuning some hyper parameters
+the issues we are having are 
+1. accuracy not being high enough
+2. over fitting model
 
-### Code Implementation Cifar 10 
+The model tuning is a case dependant procedure. We can do following changes in out case
+1. Change LR, training is slow as learning between consecetive epochs is very small so we can increase LR to 0.001
+2. Adding more Conv Layers
+3. Since we had overfitting, so we can reduce kernel size. from 5 to 3. Its a hyperparameter we need to tune
+4. We can also include padding, in MNIST we ignored padding because of our image ROI was not in boundry region.
+```
+class LeNet(nn.Module):
+    def __init__(self):
+      super().__init__()
+      self.conv1 = nn.Conv2d(3, 16, 3, 1, padding=1)
+      self.conv2 = nn.Conv2d(16, 32, 3, 1, padding=1)
+      self.conv3 = nn.Conv2d(32, 64, 3, 1, padding=1)
+      self.fc1 = nn.Linear(4*4*64, 500)
+      self.dropout1 = nn.Dropout(0.5)
+      self.fc2 = nn.Linear(500, 10)
+    def forward(self, x):
+      x = F.relu(self.conv1(x))
+      x = F.max_pool2d(x, 2, 2)
+      x = F.relu(self.conv2(x))
+      x = F.max_pool2d(x, 2, 2)
+      x = F.relu(self.conv3(x))
+      x = F.max_pool2d(x, 2, 2)
+      x = x.view(-1, 4*4*64)
+      x = F.relu(self.fc1(x))
+      x = self.dropout1(x)
+      x = self.fc2(x)
+      return x
+      
+```
+5. Additionally we can also use data augmentation techniques to increase the quantity of data for training process. This is done by altering the image in useful ways. eg zoom, rotate, crop, flip, darker shading, translation, noise etc. This create variety of existing data and adds prespective. This can be achieved with following transforms.
+
+```
+transform_train = transforms.Compose([transforms.Resize((32,32)),
+                                      transforms.RandomHorizontalFlip(),
+                                      transforms.RandomRotation(10),
+                                      transforms.RandomAffine(0, shear=10, scale=(0.8,1.2)),
+                                      transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2),
+                                      transforms.ToTensor(),
+                                      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+                               ])
+```
+Note the transforms are applied to only training data not validation data, All available transforms and their details can be explored on following link, https://pytorch.org/docs/stable/torchvision/transforms.html
+ 
+We can also further perform regularization techniques, tune architecture complexity and parameters and you can play with the parameters on your own. Please share your results on SmartCityLab Twitter, Facebook and LinkedIn pages. Post any errors and questions too, we will try to help you out. 
+
+
+## State of the art Pre trained Dataset
+The final skill that we will aquire is use of powerful Neural Nets for highly complex task. A good model has two main contributers
+1. Model architecture
+2. Quality training
+These two are high cost paraeters, this means that they lots of data and computational power. In complex situation with time, data and computation constraints we can use the technique called transfer learning. Just like learning one programming language can help learning new language. Its a skill that is great to have on your disposal. 
+
+### When to use Transfer learning
+1. when you dont have enough labelled data
+2. effective model still exists
+
+### AlexNet and VGG Model
+We will use AlexNet Model for Transfer learning. Its feature extraction section consist of 5 conv layers and the classifier section consists of 3 fully connected layers.
+VGG-16 contains 13 Conv layers and 3 FC layers making 16 layers. These both are trained on ImageNet Dataset of 14 Million images, 20,000 classes. 
+![AlexNet](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/AlexNet.png)
+![VGG(https://github.com/ShumailaAhmed/AI-Workshop/blob/main/VGG.png)
+
+
+### Bees  and Ants Dataset
+It contains images from Google search, contains 400 images. They are not visually very diffrent, hence classification task is going to be very difficult. 
+
+### Training procedure
+For using pretrained we 
+1. Freeze the parameters in the feature extraction layer
+2. We will train the FC layers and hence keep them dynamic
+3. We will add a layer at end of model with 2 nodes, since we need to classify 2 objects 
+
+This will help model learn which features are more important for our dataset. 
 
 ### Code Transfer Learning
 
+```from torchvision import models
+```
+```
+!git clone https://github.com/jaddoescad/ants_and_bees.git
+```
+*see the folder structure*
+Since the AlexNet model was trained on images of size 224x224 we change the input size. 
+```
+training_dataset = datasets.ImageFolder('ants_and_bees/train', transform=transform_train)
+validation_dataset = datasets.ImageFolder('ants_and_bees/val', transform=transform)
+```
+The data set loader makes use of folder structure to assign classes. it will assign class 0 to ands and 1 to bees. 
+
+```
+print(len(training_dataset))
+print(len(validation_dataset))
+```
+we reduce the batch size to access it in smaller batches
+
+```
+training_loader = torch.utils.data.DataLoader(training_dataset, batch_size=20, shuffle=True)
+validation_loader = torch.utils.data.DataLoader(validation_dataset, batch_size = 20, shuffle=False)
+```
+*Also change jitter transform to 1 and remove rotation transform*
+
+Since we have only two classes we will change our class list
+```
+classes = ('ants', 'bees')
+```
+Now we can load the model 
+```
+model = models.vgg16(pretrained=True)
+print(model)
+```
+now we have the model and recall we need to freeze the feature extraction layer to do so we will do as following
+
+```
+for param in model.features.parameters():
+  param.requires_grad = False
+```
+Next we need to change the last layer of the model.
+1. We will access 6th element of classifier and access its input features. 
+2. Create new linear layer
+3. Update the previous last layer with new one
+```
+import torch.nn as nn
+
+n_inputs = model.classifier[6].in_features
+last_layer = nn.Linear(n_inputs, len(classes))
+model.classifier[6] = last_layer
+model.to(device)
+print(model.classifier[6].out_features)
+```
+
+we can use the following training procedure
+```
+epochs = 15
+running_loss_history = []
+running_corrects_history = []
+val_running_loss_history = []
+val_running_corrects_history = []
+
+for e in range(epochs):
+  
+  running_loss = 0.0
+  running_corrects = 0.0
+  val_running_loss = 0.0
+  val_running_corrects = 0.0
+  
+  for inputs, labels in training_loader:
+    inputs = inputs.to(device)
+    labels = labels.to(device)
+    outputs = model(inputs)
+    loss = criterion(outputs, labels)
+    
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    
+    _, preds = torch.max(outputs, 1)
+    running_loss += loss.item()
+    running_corrects += torch.sum(preds == labels.data)
+
+  else:
+    with torch.no_grad():
+      for val_inputs, val_labels in validation_loader:
+        val_inputs = val_inputs.to(device)
+        val_labels = val_labels.to(device)
+        val_outputs = model(val_inputs)
+        val_loss = criterion(val_outputs, val_labels)
+        
+        _, val_preds = torch.max(val_outputs, 1)
+        val_running_loss += val_loss.item()
+        val_running_corrects += torch.sum(val_preds == val_labels.data)
+      
+    epoch_loss = running_loss/len(training_loader.dataset)
+    epoch_acc = running_corrects.float()/ len(training_loader.dataset)
+    running_loss_history.append(epoch_loss)
+    running_corrects_history.append(epoch_acc)
+    
+    val_epoch_loss = val_running_loss/len(validation_loader.dataset)
+    val_epoch_acc = val_running_corrects.float()/ len(validation_loader.dataset)
+    val_running_loss_history.append(val_epoch_loss)
+    val_running_corrects_history.append(val_epoch_acc)
+    print('epoch :', (e+1))
+    print('training loss: {:.4f}, acc {:.4f} '.format(epoch_loss, epoch_acc.item()))
+    print('validation loss: {:.4f}, validation acc {:.4f} '.format(val_epoch_loss, val_epoch_acc.item()))
+```
+You can also try changing it to VGG
 
 
 # Hyperparameters to be mindful of
@@ -1357,3 +1543,5 @@ etc
 
 # Glossary Of Workshop
 ![Questions](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/questions.jpeg)
+
+# Trainer Email: shumailaahmed@neduet.edu.pk
