@@ -1217,7 +1217,7 @@ This was a multi class classification problem that we approached with fully conn
 Suppose we have a RGB image of size 480 x 360 pixels, the total number of input features will compute to 480*360*3 = 518400. This is computationally impossible for our machines. Hence we will shift our focus towards CNN
 
 ## Convoloutional Neural Network
-![Convolution operation](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cnn.jpeg)
+![CNN](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/cnn.jpeg)
 
 CNNs have changed the way we classify images, as they are very effective at recognizing patterns in images by taking into account the spatial structure. ordinary NNS ignore spatial relevance of pixels, i.e images being close togather, etc. They require lower quantity of parameters when compared to ANNs. There are two sections of CNN, namely feature extraction section and classification section.
 
@@ -1255,12 +1255,15 @@ The parameters associated with pooling layers is window size and stride.
 The convolution and pooling layers are used for feature extraction. Once the relevant features are extracted, then the Fully Connected layers come into action to make actual classification. The FC layers assign a probability for imput image belonging to some class. Each feature map is flattened before into 1D array before it is fed to the fully connected network. The fully connected network produces final probability. this is similar to what we saw in Deep Neural Network.  
 
 
+In a neural nets lower layers corrspond to simple image features while higher layers correspong to more sophiscated layers of image. Before we go towards code, we can visualize the details in the following link https://www.cs.ryerson.ca/~aharley/vis/conv/ (flat.html). 
 
+### The Training Process
 
-
-In a neural nets lower layers corrspond to simple image features while higher layers correspong to more sophiscated layers of image. we can visualize this discussing in the following link https://www.cs.ryerson.ca/~aharley/vis/conv/ (flat.html). 
-
-
+1. Random values are initialized for all filters and parameters in CONV layers and all weights and bias in FC layers
+2. Network recieves an input goes through length of NN, the feature extraction and classification layer
+3. The Classification output is compared to true label and a cross entropy loss is calculated. 
+4. The weights are updated to minimize the error using gradient descent. 
+The only values that change during the training process are the values of the filter matrix in Conv layer and weights in FC layer. The process is very similar to what we have done uptil now. 
 
 ### Code Implementation MNIST CNN
 
@@ -1275,6 +1278,15 @@ In a neural nets lower layers corrspond to simple image features while higher la
 2. No of hidden layers
 3. No of nodes in each hidden layers
 4. no of epochs
+for CNN
+5. No of Conv and pooling layer
+6. No of kernels/filters 
+7. Size of kernels
+8. Stride
+9. Padding
+10. pooling window size
+11. Activation function
+12. Dropout
 etc
 
 # Glossary Of Workshop
