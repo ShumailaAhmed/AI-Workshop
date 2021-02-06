@@ -1334,7 +1334,7 @@ A tensor is the Generalization of matrices with n dimensions.
 
 Open google Colabotary  
 
-```!pip install torch
+```
 import torch
 
 oneDTensor = torch.tensor([1,2,3])
