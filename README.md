@@ -1,5 +1,6 @@
 # AI-Workshop
  Artificial Intelligence Workshop With Pytorch
+https://colab.research.google.com
 
 ## Linear Regression
 
@@ -1541,11 +1542,7 @@ print(z.grad)
 ```
 
 This is all, we can now use this knowledge to train neural networks. 
-
-
-# APPENDIX III
-## Glossary Of Workshop  
-
+  
 # APPENDIX III
 ## Prerequisite Knowledge
 1. Programming Basics
