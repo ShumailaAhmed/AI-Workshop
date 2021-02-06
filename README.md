@@ -1358,9 +1358,9 @@ print(oneDTensor[:4])
 we can also define float tensors
 
 ```
- floatTensor= torch.FloatTensor([1,2,3,4,5,6])
- print (floatTensor)
- print(floatTensor.dtype)
+floatTensor= torch.FloatTensor([1,2,3,4,5,6])
+print (floatTensor)
+print(floatTensor.dtype)
  ```
  
  size of a tensor is determined by the size method
@@ -1556,3 +1556,6 @@ This is all, we can now use this knowledge to train neural networks.
 ![Questions](https://github.com/ShumailaAhmed/AI-Workshop/blob/main/questions.jpeg)
 
 # Trainer Email: shumailaahmed@neduet.edu.pk
+# https://twitter.com/smartcitylabned?s=09
+# https://www.instagram.com/smartcitylab.ncai?r=nametag
+# https://twitter.com/smartcitylabned?s=09
